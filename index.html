@@ -186,6 +186,8 @@ border-radius:14px;
 text-decoration:none;
 font-weight:800;
 transition: 0.3s;
+cursor: pointer;
+border: none;
 }
 .btn:hover {
     background: #e01243;
@@ -227,6 +229,90 @@ body.rtl .title {
     padding-right: 15px;
 }
 
+/* ===== CALORIE CALCULATOR STYLE ===== */
+.calc-container {
+    background: rgba(15, 15, 15, 0.65);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 40px;
+    border-radius: 24px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.calc-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    margin-bottom: 25px;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.input-group label {
+    font-size: 14px;
+    color: #aaa;
+    font-weight: 600;
+}
+
+.input-group input, .input-group select {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 14px;
+    border-radius: 12px;
+    color: white;
+    font-size: 16px;
+    outline: none;
+    transition: 0.3s;
+}
+
+.input-group input:focus, .input-group select:focus {
+    border-color: #ff174f;
+    background: rgba(255, 255, 255, 0.06);
+}
+
+/* ستايل النتيجة */
+.calc-result {
+    margin-top: 30px;
+    padding-top: 25px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    text-align: center;
+    display: none;
+}
+
+.result-box {
+    display: inline-block;
+    background: rgba(255, 23, 79, 0.1);
+    border: 1px solid rgba(255, 23, 79, 0.2);
+    padding: 20px 40px;
+    border-radius: 16px;
+    margin-bottom: 15px;
+}
+
+.result-number {
+    font-size: 36px;
+    font-weight: 900;
+    color: #ff174f;
+    text-shadow: 0 0 20px rgba(255, 23, 79, 0.4);
+}
+
+.result-text {
+    color: #bbb;
+    font-size: 16px;
+    margin-top: 5px;
+}
+
+.recommendation-text {
+    font-size: 15px;
+    color: #ff174f;
+    font-weight: 700;
+    margin-top: 10px;
+}
+
 /* ===== CARDS ===== */
 .cards{
 display:flex;
@@ -264,9 +350,6 @@ background: rgba(20, 20, 20, 0.8);
     text-transform: uppercase;
     letter-spacing: 1px;
 }
-body.rtl .card-badge {
-    align-self: flex-start;
-}
 
 .card-info h3{
 font-size: 28px;
@@ -301,7 +384,6 @@ font-weight: 400;
     border-right: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-/* لقلب حدود الخصائص في اللغة العربية */
 body.rtl .spec-item:not(:last-child) {
     border-right: none;
     border-left: 1px solid rgba(255, 255, 255, 0.05);
@@ -356,7 +438,13 @@ margin-top:80px;
 font-size: 14px;
 }
 
-/* Responsive adjustment for specs on small mobiles */
+/* Responsive adjustment */
+@media (max-width: 600px) {
+    .calc-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
 @media (max-width: 480px) {
     .card {
         padding: 25px 20px;
@@ -391,7 +479,6 @@ font-size: 14px;
 <div class="logo">AYHAM ELITE</div>
 
 <nav>
-    <!-- زر اللغة التفاعلي -->
     <div class="lang-btn" id="langToggle">
         <svg width="16" height="16" viewBox="0 0 24 24">
             <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.53c-.26-.81-1-1.4-1.9-1.4h-1v-3c0-.55-.45-1-1-1h-6v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
@@ -415,7 +502,50 @@ font-size: 14px;
 <div>
 <h1 id="heroTitle">BUILD <span>ELITE BODY</span></h1>
 <p id="heroDesc">Train like a beast. Become unstoppable.</p>
-<a href="#programs" class="btn" id="heroBtn">ENTER SYSTEM</a>
+<a href="#calculator" class="btn" id="heroBtn">ENTER SYSTEM</a>
+</div>
+</section>
+
+<!-- ================= قسم حاسبة السعرات الحرارية الجديد ================= -->
+<section class="section" id="calculator">
+<h2 class="title" id="calcTitle">Calorie Calculator</h2>
+
+<div class="calc-container">
+    <div class="calc-grid">
+        <div class="input-group">
+            <label id="lblWeight">Weight (kg)</label>
+            <input type="number" id="weight" placeholder="e.g. 75">
+        </div>
+        <div class="input-group">
+            <label id="lblHeight">Height (cm)</label>
+            <input type="number" id="height" placeholder="e.g. 180">
+        </div>
+        <div class="input-group">
+            <label id="lblAge">Age</label>
+            <input type="number" id="age" placeholder="e.g. 22">
+        </div>
+        <div class="input-group">
+            <label id="lblActivity">Activity Level</label>
+            <select id="activity">
+                <option value="1.2" id="opt1">Sedentary (Little or no exercise)</option>
+                <option value="1.375" id="opt2">Light (Exercise 1-3 days/week)</option>
+                <option value="1.55" id="opt3">Moderate (Exercise 3-5 days/week)</option>
+                <option value="1.725" id="opt4">Heavy (Exercise 6-7 days/week)</option>
+            </select>
+        </div>
+    </div>
+    
+    <div style="text-align: center;">
+        <button class="btn" id="btnCalculate" onclick="calculateCalories()">Calculate Calories</button>
+    </div>
+
+    <div class="calc-result" id="calcResult">
+        <div class="result-box">
+            <div class="result-number" id="caloriesValue">0</div>
+            <div class="result-text" id="caloriesText">Calories / Day (Maintenance)</div>
+        </div>
+        <p class="recommendation-text" id="recommendationText"></p>
+    </div>
 </div>
 </section>
 
@@ -513,7 +643,7 @@ font-size: 14px;
     <div class="card">
         <div class="card-badge" id="b4">Fat Loss</div>
         <div class="card-info">
-            <h3 id="t4">Cutting Plan</h3>
+            <h3>Cutting Plan</h3>
             <p id="d4">Lean body, sharp definitions.</p>
         </div>
         <div class="card-specs">
@@ -570,7 +700,7 @@ font-size: 14px;
 </div>
 
 <script>
-// كود جافاسكريبت للترجمة الفورية وتبديل اللغات
+// جافاسكريبت لحساب السعرات التفاعلية والترجمة الكاملة
 const langToggle = document.getElementById('langToggle');
 const langText = document.getElementById('langText');
 
@@ -580,15 +710,30 @@ const translations = {
         heroTitle: 'BUILD <span>ELITE BODY</span>',
         heroDesc: "Train like a beast. Become unstoppable.",
         heroBtn: "ENTER SYSTEM",
+        calcTitle: "Calorie Calculator",
+        lblWeight: "Weight (kg)",
+        lblHeight: "Height (cm)",
+        lblAge: "Age",
+        lblActivity: "Activity Level",
+        opt1: "Sedentary (Little or no exercise)",
+        opt2: "Light (Exercise 1-3 days/week)",
+        opt3: "Moderate (Exercise 3-5 days/week)",
+        opt4: "Heavy (Exercise 6-7 days/week)",
+        btnCalculate: "Calculate Calories",
+        caloriesText: "Calories / Day (Maintenance)",
         secTitle1: "Training Programs",
         secTitle2: "Nutrition Plans",
         footer: "© 2026 Ayham Elite Fitness",
+        // التوصيات الذكية
+        recBulk: "💡 Tip: To gain muscle mass (Bulking), eat around +500 calories extra! Download the 'Bulking Plan' below.",
+        recCut: "💡 Tip: To burn fat (Cutting), eat around -500 calories less! Download the 'Cutting Plan' below.",
+        alertField: "Please fill in all fields correctly!",
         // كروت التمارين
         b1: "Beginner", t1: "Beginner", d1: "Start strong fundamentals.", lbl1_1: "Days", val1_1: "3–4", lbl1_2: "Level", val1_2: "Beginner", lbl1_3: "Type", val1_3: "Full Body", btn1: "↓ Download",
         b2: "Hypertrophy", t2: "Hypertrophy", d2: "Muscle growth system.", lbl2_1: "Days", val2_1: "4–5", lbl2_2: "Level", val2_2: "Intermediate", lbl2_3: "Type", val2_3: "Push Pull Legs", btn2: "↓ Download",
         b3: "Fat Burn", t3: "Fat Burn", d3: "Cut fat & keep muscle.", lbl3_1: "Days", val3_1: "4–6", lbl3_2: "Level", val3_2: "All Levels", lbl3_3: "Type", val3_3: "Full Body", btn3: "↓ Download",
         // كروت التغذية
-        b4: "Fat Loss", t4: "Cutting Plan", d4: "Lean body, sharp definitions.", lbl4_1: "Goal", val4_1: "Deficit", lbl4_2: "Focus", val4_2: "Fat Loss", lbl4_3: "Type", val4_3: "High Protein", btn4: "↓ Download Plan",
+        b4: "Fat Loss", d4: "Lean body, sharp definitions.", lbl4_1: "Goal", val4_1: "Deficit", lbl4_2: "Focus", val4_2: "Fat Loss", lbl4_3: "Type", val4_3: "High Protein", btn4: "↓ Download Plan",
         b5: "Mass Gain", t5: "Bulking Plan", d5: "Clean mass gain with minimal fat.", lbl5_1: "Goal", val5_1: "Surplus", lbl5_2: "Focus", val5_2: "Muscle Mass", lbl5_3: "Type", val5_3: "Clean Bulking", btn5: "↓ Download Plan"
     },
     ar: {
@@ -596,21 +741,65 @@ const translations = {
         heroTitle: 'ابنِ <span>جسداً مثالياً</span>',
         heroDesc: "تمرّن كالأبطال. واصبح قوة لا يمكن إيقافها.",
         heroBtn: "دخول النظام",
+        calcTitle: "حاسبة السعرات الحرارية",
+        lblWeight: "الوزن (كيلو جرام)",
+        lblHeight: "الطول (سم)",
+        lblAge: "العمر",
+        lblActivity: "مستوى النشاط اليومي",
+        opt1: "خامل (بدون تمارين أو تمارين خفيفة جداً)",
+        opt2: "نشاط خفيف (تمارين من 1-3 أيام في الأسبوع)",
+        opt3: "نشاط متوسط (تمارين من 3-5 أيام في الأسبوع)",
+        opt4: "نشاط عالي (تمارين من 6-7 أيام في الأسبوع)",
+        btnCalculate: "احسب السعرات الآن",
+        caloriesText: "سعرة حرارية / اليوم (للمحافظة على الوزن)",
         secTitle1: "البرامج التدريبية",
         secTitle2: "الأنظمة الغذائية",
         footer: "© 2026 أيهم إليت فيتنس. جميع الحقوق محفوظة.",
+        // التوصيات الذكية بالعربي
+        recBulk: "💡 نصيحة الكابتن أيهم: لزيادة كتلتك العضلية وضخامتك، ننصحك باستهلاك +500 سعرة إضافية. حمّل 'خطة التضخيم' في الأسفل.",
+        recCut: "💡 نصيحة الكابتن أيهم: لحرق الدهون والتنشيف، ننصحك بتقليل -500 سعرة من احتياجك. حمّل 'خطة التنشيف' في الأسفل.",
+        alertField: "الرجاء إدخال البيانات بشكل صحيح في جميع الحقول!",
         // كروت التمارين
         b1: "مبتدئ", t1: "برنامج المبتدئين", d1: "ابدأ بقوة مع الأساسيات الصحيحة.", lbl1_1: "الأيام", val1_1: "3–4", lbl1_2: "المستوى", val1_2: "مبتدئ", lbl1_3: "النوع", val1_3: "جسم كامل", btn1: "↓ تحميل البرنامج",
         b2: "الضخامة", t2: "برنامج التضخيم", d2: "نظام متكامل للبناء العضلي.", lbl2_1: "الأيام", val2_1: "4–5", lbl2_2: "المستوى", val2_2: "متوسط", lbl2_3: "النوع", val2_3: "دفع سحب أرجل", btn2: "↓ تحميل البرنامج",
         b3: "حرق الدهون", t3: "برنامج التنشيف", d3: "احرق الدهون وحافظ على عضلاتك.", lbl3_1: "الأيام", val3_1: "4–6", lbl3_2: "المستوى", val3_2: "كل المستويات", lbl3_3: "النوع", val3_3: "جسم كامل", btn3: "↓ تحميل البرنامج",
         // كروت التغذية
-        b4: "خسارة وزن", t4: "خطة التنشيف", d4: "جسم منسق، وتفاصيل عضلية واضحة.", lbl4_1: "الهدف", val4_1: "عجز سعرات", lbl4_2: "التركيز", val4_2: "حرق دهون", lbl4_3: "النوع", val4_3: "بروتين عالٍ", btn4: "↓ تحميل الخطة",
+        b4: "خسارة وزن", d4: "جسم منسق، وتفاصيل عضلية واضحة.", lbl4_1: "الهدف", val4_1: "عجز سعرات", lbl4_2: "التركيز", val4_2: "حرق دهون", lbl4_3: "النوع", val4_3: "بروتين عالٍ", btn4: "↓ تحميل الخطة",
         b5: "زيادة وزن", t5: "خطة التضخيم", d5: "زيادة كتلة عضلية صافية بأقل دهون.", lbl5_1: "الهدف", val5_1: "فائض سعرات", lbl5_2: "التركيز", val5_2: "كتلة عضلية", lbl5_3: "النوع", val5_3: "تضخيم نظيف", btn5: "↓ تحميل الخطة"
     }
 };
 
 let currentLang = 'en';
 
+// دالة حساب السعرات التفاعلية الذكية
+function calculateCalories() {
+    const weight = parseFloat(document.getElementById('weight').value);
+    const height = parseFloat(document.getElementById('height').value);
+    const age = parseFloat(document.getElementById('age').value);
+    const activity = parseFloat(document.getElementById('activity').value);
+
+    if (!weight || !height || !age) {
+        alert(translations[currentLang].alertField);
+        return;
+    }
+
+    // معادلة ميفلين سانت جيور للذكور (Mifflin-St Jeor Equation)
+    const bmr = (10 * weight) + (6.25 * height) - (5 * age) + 5;
+    const maintenanceCalories = Math.round(bmr * activity);
+
+    document.getElementById('caloriesValue').textContent = maintenanceCalories;
+    
+    // إعطاء نصيحة ذكية بناءً على الوزن والهدف المتوقع
+    if (weight < 70) {
+        document.getElementById('recommendationText').textContent = translations[currentLang].recBulk;
+    } else {
+        document.getElementById('recommendationText').textContent = translations[currentLang].recCut;
+    }
+
+    document.getElementById('calcResult').style.display = 'block';
+}
+
+// تبديل اللغات لجميع العناصر بما فيها الحاسبة
 langToggle.addEventListener('click', () => {
     currentLang = currentLang === 'en' ? 'ar' : 'en';
     
@@ -628,10 +817,29 @@ langToggle.addEventListener('click', () => {
     document.getElementById('secTitle2').textContent = translations[currentLang].secTitle2;
     document.getElementById('footerText').textContent = translations[currentLang].footer;
     
+    // عناصر الحاسبة
+    document.getElementById('calcTitle').textContent = translations[currentLang].calcTitle;
+    document.getElementById('lblWeight').textContent = translations[currentLang].lblWeight;
+    document.getElementById('lblHeight').textContent = translations[currentLang].lblHeight;
+    document.getElementById('lblAge').textContent = translations[currentLang].lblAge;
+    document.getElementById('lblActivity').textContent = translations[currentLang].lblActivity;
+    document.getElementById('opt1').textContent = translations[currentLang].opt1;
+    document.getElementById('opt2').textContent = translations[currentLang].opt2;
+    document.getElementById('opt3').textContent = translations[currentLang].opt3;
+    document.getElementById('opt4').textContent = translations[currentLang].opt4;
+    document.getElementById('btnCalculate').textContent = translations[currentLang].btnCalculate;
+    document.getElementById('caloriesText').textContent = translations[currentLang].caloriesText;
+
+    // إذا كانت النتيجة معروضة، يتم تحديث النصيحة فوراً للغة الجديدة
+    if(document.getElementById('calcResult').style.display === 'block') {
+        const w = parseFloat(document.getElementById('weight').value);
+        document.getElementById('recommendationText').textContent = w < 70 ? translations[currentLang].recBulk : translations[currentLang].recCut;
+    }
+    
     // تحديث الكروت ديناميكياً
     for (let i = 1; i <= 5; i++) {
         document.getElementById(`b${i}`).textContent = translations[currentLang][`b${i}`];
-        document.getElementById(`t${i}`).textContent = translations[currentLang][`t${i}`];
+        if(document.getElementById(`t${i}`)) document.getElementById(`t${i}`).textContent = translations[currentLang][`t${i}`];
         document.getElementById(`d${i}`).textContent = translations[currentLang][`d${i}`];
         document.getElementById(`btn${i}`).innerHTML = `<span>↓</span> ` + translations[currentLang][`btn${i}`].replace('↓ ', '');
         
