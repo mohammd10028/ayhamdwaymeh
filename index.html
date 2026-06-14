@@ -3,122 +3,319 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ayham 3D Elite</title>
+<title>Ayham Fitness Elite</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800;900&display=swap" rel="stylesheet">
 
 <style>
-body {
-margin: 0;
-overflow: hidden;
-background: black;
-font-family: Arial;
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Inter',sans-serif;
 }
 
-#ui {
-position: absolute;
-top: 50%;
-left: 50%;
-transform: translate(-50%, -50%);
-color: white;
-text-align: center;
-z-index: 10;
+body{
+background:#050505;
+color:white;
+overflow-x:hidden;
 }
 
-h1 {
-font-size: 50px;
-text-shadow: 0 0 20px #ff174f;
+/* ===== Animated Background ===== */
+.bg{
+position:fixed;
+width:100%;
+height:100%;
+z-index:-1;
+background:radial-gradient(circle at top,#1a0008,#050505);
 }
 
-p {
-opacity: 0.7;
+.glow{
+position:absolute;
+width:600px;
+height:600px;
+background:#ff174f;
+filter:blur(180px);
+opacity:.15;
+border-radius:50%;
+animation:float 8s infinite ease-in-out;
 }
 
-button {
-margin-top: 20px;
-padding: 12px 30px;
-border: none;
-border-radius: 12px;
-background: #ff174f;
-color: white;
-font-weight: bold;
-cursor: pointer;
-transition: 0.3s;
+.glow:nth-child(2){
+background:#ff0033;
+left:50%;
+top:40%;
 }
 
-button:hover {
-transform: scale(1.1);
-box-shadow: 0 0 30px #ff174f;
+@keyframes float{
+0%{transform:translateY(0);}
+50%{transform:translateY(80px);}
+100%{transform:translateY(0);}
+}
+
+/* ===== Container ===== */
+.container{
+width:min(1200px,90%);
+margin:auto;
+position:relative;
+}
+
+/* ===== Header ===== */
+header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:25px 0;
+position:sticky;
+top:0;
+backdrop-filter:blur(10px);
+background:rgba(0,0,0,0.4);
+z-index:10;
+}
+
+.logo{
+font-size:28px;
+font-weight:900;
+color:#ff174f;
+letter-spacing:2px;
+}
+
+nav{
+display:flex;
+gap:18px;
+align-items:center;
+}
+
+nav a{
+color:white;
+text-decoration:none;
+opacity:.7;
+font-weight:600;
+transition:.3s;
+}
+
+nav a:hover{
+opacity:1;
+transform:translateY(-2px);
+}
+
+.insta{
+padding:10px 16px;
+border-radius:12px;
+background:linear-gradient(45deg,#feda75,#fa7e1e,#d62976,#962fbf,#4f5bd5);
+font-weight:800;
+box-shadow:0 0 20px rgba(255,0,100,.25);
+}
+
+/* ===== HERO ===== */
+.hero{
+min-height:90vh;
+display:flex;
+justify-content:center;
+align-items:center;
+text-align:center;
+}
+
+.hero h1{
+font-size:clamp(45px,8vw,110px);
+font-weight:900;
+animation:fadeUp 1s ease;
+}
+
+.hero span{
+color:#ff174f;
+text-shadow:0 0 25px #ff174f;
+}
+
+.hero p{
+color:#bbb;
+max-width:700px;
+margin:20px auto;
+animation:fadeUp 1.2s ease;
+}
+
+.btn{
+display:inline-block;
+margin-top:25px;
+padding:16px 40px;
+background:#ff174f;
+color:white;
+border-radius:14px;
+text-decoration:none;
+font-weight:800;
+transition:.3s;
+box-shadow:0 0 30px rgba(255,23,79,.4);
+}
+
+.btn:hover{
+transform:scale(1.08);
+box-shadow:0 0 50px rgba(255,23,79,.7);
+}
+
+/* ===== SECTIONS ===== */
+.section{
+padding:90px 0;
+opacity:0;
+transform:translateY(40px);
+transition:1s;
+}
+
+.section.show{
+opacity:1;
+transform:translateY(0);
+}
+
+.title{
+text-align:center;
+font-size:40px;
+margin-bottom:50px;
+font-weight:900;
+}
+
+/* ===== CARDS ===== */
+.cards{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:20px;
+}
+
+.card{
+background:rgba(255,255,255,0.03);
+backdrop-filter:blur(10px);
+border:1px solid rgba(255,255,255,0.08);
+padding:30px;
+border-radius:18px;
+transition:.4s;
+transform:translateY(20px);
+opacity:0;
+}
+
+.card.show{
+opacity:1;
+transform:translateY(0);
+}
+
+.card:hover{
+transform:translateY(-12px) scale(1.04);
+border-color:#ff174f;
+box-shadow:0 10px 40px rgba(255,23,79,.25);
+}
+
+.card h3{
+color:#ff174f;
+margin-bottom:10px;
+}
+
+.card p{
+color:#aaa;
+line-height:1.6;
+}
+
+/* ===== FOOTER ===== */
+footer{
+text-align:center;
+padding:40px;
+color:#777;
+border-top:1px solid #222;
+margin-top:60px;
+}
+
+/* ===== Animations ===== */
+@keyframes fadeUp{
+from{opacity:0;transform:translateY(40px);}
+to{opacity:1;transform:translateY(0);}
+}
+
+/* ===== WhatsApp ===== */
+.float{
+position:fixed;
+bottom:20px;
+right:20px;
+background:#25D366;
+padding:14px 16px;
+border-radius:50px;
+font-weight:800;
+text-decoration:none;
+color:white;
+box-shadow:0 0 25px rgba(0,255,120,.3);
+transition:.3s;
+}
+
+.float:hover{
+transform:scale(1.1);
 }
 </style>
 </head>
 
 <body>
 
-<div id="ui">
-<h1>AYHAM 3D ELITE</h1>
-<p>Welcome to next level experience</p>
-<button onclick="alert('System Activated 🔥')">ENTER SYSTEM</button>
+<div class="bg">
+<div class="glow"></div>
+<div class="glow"></div>
 </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<div class="container">
+
+<header>
+<div class="logo">AYHAM ELITE</div>
+
+<nav>
+<a href="#programs">Programs</a>
+<a href="#nutrition">Nutrition</a>
+<a class="insta" href="https://instagram.com/2yhamm" target="_blank">Instagram</a>
+</nav>
+</header>
+
+<section class="hero">
+<div>
+<h1>BUILD <span>ELITE BODY</span></h1>
+<p>Train like a beast. Eat like a pro. Become unstoppable.</p>
+<a href="#programs" class="btn">ENTER SYSTEM</a>
+</div>
+</section>
+
+<section class="section" id="programs">
+<h2 class="title">Training Programs</h2>
+
+<div class="cards">
+<div class="card"><h3>Beginner</h3><p>Start strong with smart fundamentals.</p></div>
+<div class="card"><h3>Hypertrophy</h3><p>Maximum muscle growth system.</p></div>
+<div class="card"><h3>Fat Burn</h3><p>Cut fat while keeping strength.</p></div>
+</div>
+</section>
+
+<section class="section" id="nutrition">
+<h2 class="title">Nutrition Plans</h2>
+
+<div class="cards">
+<div class="card"><h3>Cutting</h3><p>Lean body definition plan.</p></div>
+<div class="card"><h3>Bulking</h3><p>Clean mass gain strategy.</p></div>
+<div class="card"><h3>Tracking</h3><p>Macros & calories control system.</p></div>
+</div>
+</section>
+
+<footer>
+© 2026 Ayham Elite Fitness
+</footer>
+
+<a class="float" href="https://wa.me/962799954369" target="_blank">WhatsApp</a>
+
+</div>
 
 <script>
-// Scene
-const scene = new THREE.Scene();
+const sections=document.querySelectorAll('.section');
+const cards=document.querySelectorAll('.card');
 
-// Camera
-const camera = new THREE.PerspectiveCamera(
-75,
-window.innerWidth / window.innerHeight,
-0.1,
-1000
-);
-
-camera.position.z = 5;
-
-// Renderer
-const renderer = new THREE.WebGLRenderer({ antialias: true });
-renderer.setSize(window.innerWidth, window.innerHeight);
-document.body.appendChild(renderer.domElement);
-
-// Objects (3D cubes)
-const geometry = new THREE.BoxGeometry();
-const material = new THREE.MeshStandardMaterial({ color: 0xff174f });
-
-const cubes = [];
-
-for(let i=0;i<20;i++){
-const cube = new THREE.Mesh(geometry, material);
-cube.position.x = (Math.random()-0.5)*10;
-cube.position.y = (Math.random()-0.5)*10;
-cube.position.z = (Math.random()-0.5)*10;
-scene.add(cube);
-cubes.push(cube);
+const observer=new IntersectionObserver(entries=>{
+entries.forEach(entry=>{
+if(entry.isIntersecting){
+entry.target.classList.add('show');
 }
-
-// Light
-const light = new THREE.PointLight(0xffffff, 1);
-light.position.set(5,5,5);
-scene.add(light);
-
-// Animation
-function animate(){
-requestAnimationFrame(animate);
-
-cubes.forEach(c=>{
-c.rotation.x += 0.01;
-c.rotation.y += 0.01;
 });
+},{threshold:0.15});
 
-renderer.render(scene, camera);
-}
-
-animate();
-
-// Mouse movement effect
-document.addEventListener("mousemove", (e)=>{
-camera.position.x = (e.clientX / window.innerWidth - 0.5) * 2;
-camera.position.y = -(e.clientY / window.innerHeight - 0.5) * 2;
-});
+sections.forEach(s=>observer.observe(s));
+cards.forEach(c=>observer.observe(c));
 </script>
 
 </body>
