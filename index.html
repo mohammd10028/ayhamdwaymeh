@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ayham Fitness Elite</title>
+<title>Ayham Elite</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800;900&display=swap" rel="stylesheet">
 
@@ -16,7 +16,7 @@ font-family:'Inter',sans-serif;
 }
 
 body{
-background:#050505;
+background:#07070a;
 color:white;
 overflow-x:hidden;
 }
@@ -24,28 +24,46 @@ overflow-x:hidden;
 /* ===== BACKGROUND ===== */
 .bg{
 position:fixed;
-width:100%;
-height:100%;
+inset:0;
 z-index:-2;
-background:radial-gradient(circle at top,#1a0008,#050505);
+background: radial-gradient(circle at top,#1a1a2e,#07070a);
 }
 
-canvas{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-z-index:-1;
+.blob{
+position:absolute;
+width:600px;
+height:600px;
+border-radius:50%;
+filter:blur(150px);
+opacity:.25;
+animation:float 10s infinite ease-in-out;
 }
 
-/* ===== HEADER ===== */
+.blob:nth-child(1){
+background:#ff174f;
+top:-150px;
+left:-150px;
+}
+
+.blob:nth-child(2){
+background:#6c63ff;
+bottom:-150px;
+right:-150px;
+}
+
+@keyframes float{
+0%,100%{transform:translateY(0);}
+50%{transform:translateY(70px);}
+}
+
+/* ===== CONTAINER ===== */
 .container{
-width:min(1200px,90%);
+width:min(1200px,92%);
 margin:auto;
 position:relative;
 }
 
+/* ===== HEADER ===== */
 header{
 display:flex;
 justify-content:space-between;
@@ -53,222 +71,200 @@ align-items:center;
 padding:25px 0;
 position:sticky;
 top:0;
-backdrop-filter:blur(10px);
-background:rgba(0,0,0,0.4);
-z-index:10;
-}
-
-.logo{
-font-size:28px;
-font-weight:900;
-color:#ff174f;
-letter-spacing:2px;
-}
-
-nav{
-display:flex;
-gap:18px;
-align-items:center;
-}
-
-nav a{
-color:white;
-text-decoration:none;
-opacity:.7;
-font-weight:600;
-transition:.3s;
-}
-
-nav a:hover{
-opacity:1;
-transform:translateY(-2px);
-}
-
-.insta{
-padding:10px 16px;
-border-radius:12px;
-background:linear-gradient(45deg,#feda75,#fa7e1e,#d62976,#962fbf,#4f5bd5);
-font-weight:800;
+backdrop-filter:blur(12px);
+background:rgba(0,0,0,0.3);
+border-bottom:1px solid rgba(255,255,255,0.05);
 }
 
 /* ===== HERO ===== */
 .hero{
-min-height:90vh;
-display:flex;
-justify-content:center;
-align-items:center;
+padding:120px 0 70px;
 text-align:center;
 }
 
 .hero h1{
-font-size:clamp(45px,8vw,110px);
+font-size:clamp(45px,7vw,95px);
 font-weight:900;
 }
 
 .hero span{
 color:#ff174f;
-text-shadow:0 0 25px #ff174f;
 }
 
 .hero p{
-color:#bbb;
-max-width:700px;
-margin:20px auto;
+margin-top:15px;
+color:#aaa;
+max-width:650px;
+margin-inline:auto;
+font-size:18px;
 }
 
 .btn{
 display:inline-block;
 margin-top:25px;
-padding:16px 40px;
+padding:15px 34px;
 background:#ff174f;
-color:white;
 border-radius:14px;
+color:white;
 text-decoration:none;
 font-weight:800;
+transition:.3s;
+}
+
+.btn:hover{
+transform:scale(1.05);
 }
 
 /* ===== SECTIONS ===== */
 .section{
-padding:90px 0;
-opacity:0;
-transform:translateY(80px) scale(0.95);
-filter:blur(10px);
-transition:1s;
+padding:80px 0;
+}
+
+.section-title{
+font-size:30px;
+font-weight:900;
+margin-bottom:25px;
+}
+
+/* ===== BIG CARDS (ATHLEAD STYLE) ===== */
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+gap:22px;
+}
+
+/* 🔥 BIG CARD */
+.card{
+background:rgba(255,255,255,0.04);
+border:1px solid rgba(255,255,255,0.08);
+padding:45px;              /* ⬅️ كبير */
+border-radius:20px;
+transition:.4s;
+backdrop-filter:blur(12px);
+min-height:240px;          /* ⬅️ شكل Athlead */
+display:flex;
+flex-direction:column;
+justify-content:center;
 cursor:pointer;
 }
 
-.section.show{
-opacity:1;
-transform:translateY(0) scale(1);
-filter:blur(0);
-}
-
-.title{
-text-align:center;
-font-size:40px;
-margin-bottom:50px;
-font-weight:900;
-}
-
-/* ===== CARDS ===== */
-.cards{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:20px;
-}
-
-.card{
-background:rgba(255,255,255,0.03);
-backdrop-filter:blur(10px);
-border:1px solid rgba(255,255,255,0.08);
-padding:30px;
-border-radius:18px;
-transition:.4s;
-}
-
 .card:hover{
-transform:translateY(-12px) scale(1.04);
+transform:translateY(-14px) scale(1.03);
 border-color:#ff174f;
-box-shadow:0 10px 40px rgba(255,23,79,.25);
+box-shadow:0 20px 50px rgba(255,23,79,.25);
 }
 
 .card h3{
 color:#ff174f;
+font-size:22px;
 margin-bottom:10px;
 }
 
 .card p{
 color:#aaa;
 line-height:1.6;
+font-size:16px;
+margin-bottom:15px;
 }
 
 /* DOWNLOAD BUTTON */
 .download{
 display:inline-block;
-margin-top:15px;
-padding:10px 18px;
+padding:12px 16px;
 background:#ff174f;
 color:white;
-border-radius:10px;
+border-radius:12px;
 text-decoration:none;
-font-weight:700;
+font-weight:800;
+font-size:14px;
+width:fit-content;
 }
 
-/* FOOTER */
+/* ===== FOOTER ===== */
 footer{
 text-align:center;
 padding:40px;
 color:#777;
-border-top:1px solid #222;
+border-top:1px solid rgba(255,255,255,0.05);
 margin-top:60px;
+}
+
+/* animation */
+.section{
+opacity:0;
+transform:translateY(30px);
+transition:1s;
+}
+
+.section.show{
+opacity:1;
+transform:translateY(0);
 }
 </style>
 </head>
 
 <body>
 
-<div class="bg"></div>
-<canvas id="particles"></canvas>
+<div class="bg">
+<div class="blob"></div>
+<div class="blob"></div>
+</div>
 
 <div class="container">
 
 <header>
-<div class="logo">AYHAM ELITE</div>
-
-<nav>
-<a href="#programs">Programs</a>
-<a href="#nutrition">Nutrition</a>
-<a class="insta" href="https://instagram.com/2yhamm" target="_blank">Instagram</a>
-</nav>
+<div class="logo"><b>AYHAM ELITE</b></div>
 </header>
 
 <section class="hero">
-<div>
-<h1>BUILD <span>ELITE BODY</span></h1>
-<p>Train like a beast. Become unstoppable.</p>
-<a href="#programs" class="btn">ENTER SYSTEM</a>
-</div>
+<h1>Build <span>Elite Body</span></h1>
+<p>Train smarter. Eat better. Become unstoppable with structured programs.</p>
+<a class="btn" href="#programs">Explore Programs</a>
 </section>
 
-<section class="section" id="programs" onclick="openSection('programs')">
-<h2 class="title">Training Programs</h2>
+<section class="section" id="programs">
+<h2 class="section-title">Training Programs</h2>
 
-<div class="cards">
+<div class="grid">
+
 <div class="card">
 <h3>Beginner</h3>
-<p>Start strong fundamentals.</p>
-<a class="download" href="files/beginner.pdf" download>Download</a>
+<p>Start your fitness journey with strong fundamentals and step-by-step guidance.</p>
+<a class="download" href="files/beginner.pdf" download>Download Plan</a>
 </div>
 
 <div class="card">
 <h3>Hypertrophy</h3>
-<p>Muscle growth system.</p>
-<a class="download" href="files/bulking.pdf" download>Download</a>
+<p>Advanced muscle growth system designed for maximum size and strength.</p>
+<a class="download" href="files/bulking.pdf" download>Download Plan</a>
 </div>
 
 <div class="card">
-<h3>Fat Burn</h3>
-<p>Cut fat & keep muscle.</p>
-<a class="download" href="files/fatloss.pdf" download>Download</a>
+<h3>Fat Loss</h3>
+<p>Cut fat efficiently while preserving muscle mass and performance.</p>
+<a class="download" href="files/fatloss.pdf" download>Download Plan</a>
 </div>
+
 </div>
 </section>
 
 <section class="section" id="nutrition">
-<h2 class="title">Nutrition Plans</h2>
+<h2 class="section-title">Nutrition Plans</h2>
 
-<div class="cards">
+<div class="grid">
+
 <div class="card">
 <h3>Cutting</h3>
-<p>Lean body plan.</p>
-<a class="download" href="files/cutting.pdf" download>Download</a>
+<p>Lean body definition nutrition system for shredding fat.</p>
+<a class="download" href="files/cutting.pdf" download>Download Plan</a>
 </div>
 
 <div class="card">
 <h3>Bulking</h3>
-<p>Clean mass gain.</p>
-<a class="download" href="files/bulking.pdf" download>Download</a>
+<p>Clean mass gain diet structured for serious growth.</p>
+<a class="download" href="files/bulking.pdf" download>Download Plan</a>
 </div>
+
 </div>
 </section>
 
@@ -291,52 +287,6 @@ entry.target.classList.add('show');
 },{threshold:0.15});
 
 sections.forEach(s=>observer.observe(s));
-
-// click scroll
-function openSection(id){
-document.getElementById(id).scrollIntoView({behavior:"smooth"});
-}
-
-// ===== PARTICLES =====
-const canvas=document.getElementById("particles");
-const ctx=canvas.getContext("2d");
-
-canvas.width=window.innerWidth;
-canvas.height=window.innerHeight;
-
-let particles=[];
-
-for(let i=0;i<80;i++){
-particles.push({
-x:Math.random()*canvas.width,
-y:Math.random()*canvas.height,
-r:Math.random()*2,
-dx:(Math.random()-0.5),
-dy:(Math.random()-0.5)
-});
-}
-
-function animate(){
-ctx.clearRect(0,0,canvas.width,canvas.height);
-
-ctx.fillStyle="#ff174f";
-
-particles.forEach(p=>{
-ctx.beginPath();
-ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
-ctx.fill();
-
-p.x+=p.dx;
-p.y+=p.dy;
-
-if(p.x<0||p.x>canvas.width)p.dx*=-1;
-if(p.y<0||p.y>canvas.height)p.dy*=-1;
-});
-
-requestAnimationFrame(animate);
-}
-
-animate();
 </script>
 
 </body>
