@@ -5,7 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ayham Fitness Elite</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+<!-- استدعاء خطوط قوية واحترافية + خط أوزوالد للأرقام الرياضية الفخمة -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Cairo:wght@400;600;700;900&family=Oswald:wght@500;700&display=swap" rel="stylesheet">
 
 <style>
 html {
@@ -17,6 +18,7 @@ margin:0;
 padding:0;
 box-sizing:border-box;
 font-family:'Inter', sans-serif;
+transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); /* جعل كل الحركات بالموقع ناعمة وسلسة للغاية */
 }
 
 /* دعم الخط العربي ليكون متناسقاً */
@@ -34,6 +36,13 @@ overflow-x:hidden;
 body.rtl {
     direction: rtl;
     text-align: right;
+}
+
+/* ===== خط الأرقام الرياضي القوي والجميل اللائق بموقعك ===== */
+.num-font {
+    font-family: 'Oswald', sans-serif !important;
+    font-weight: 700;
+    letter-spacing: 1px;
 }
 
 /* ===== BACKGROUND ===== */
@@ -98,13 +107,11 @@ align-items:center;
     color: #ff174f;
     font-weight: 700;
     font-size: 14px;
-    transition: 0.3s;
     cursor: pointer;
 }
 
 .lang-btn svg {
     fill: #666;
-    transition: 0.3s;
 }
 
 .lang-btn:hover {
@@ -123,7 +130,6 @@ align-items:center;
     border-radius: 16px;
     font-weight: 700;
     font-size: 16px;
-    transition: 0.3s;
     box-shadow: 0 4px 15px rgba(255,23,79,0.2);
 }
 
@@ -142,36 +148,36 @@ align-items:center;
     padding: 14px;
     border-radius: 16px;
     cursor: pointer;
-    transition: 0.3s;
 }
 
 .menu-btn:hover {
     background: rgba(255, 255, 255, 0.08);
 }
 
-/* ===== القائمة الجانبية (SIDEBAR MENU) ===== */
+/* ===== القائمة الجانبية الاحترافية والسلسة المحدثة (SIDEBAR MENU) ===== */
 .sidebar {
     position: fixed;
     top: 0;
-    right: -300px;
-    width: 300px;
+    right: -320px; /* مخفية بمرونة خلف الشاشة */
+    width: 320px;
     height: 100vh;
-    background: rgba(10, 10, 10, 0.95);
-    backdrop-filter: blur(20px);
-    border-left: 1px solid rgba(255, 255, 255, 0.05);
+    background: rgba(8, 8, 8, 0.96);
+    backdrop-filter: blur(25px);
+    border-left: 1px solid rgba(255, 23, 79, 0.1);
     z-index: 100;
     padding: 40px 30px;
     display: flex;
     flex-direction: column;
-    gap: 30px;
-    transition: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    gap: 35px;
+    box-shadow: -10px 0 40px rgba(0,0,0,0.8);
 }
 
 body.rtl .sidebar {
     right: auto;
-    left: -300px;
+    left: -320px;
     border-left: none;
-    border-right: 1px solid rgba(255, 255, 255, 0.05);
+    border-right: 1px solid rgba(255, 23, 79, 0.1);
+    box-shadow: 10px 0 40px rgba(0,0,0,0.8);
 }
 
 .sidebar.open {
@@ -187,40 +193,49 @@ body.rtl .sidebar.open {
     background: none;
     border: none;
     color: #666;
-    font-size: 24px;
+    font-size: 26px;
     cursor: pointer;
-    transition: 0.3s;
 }
 .sidebar-close:hover {
     color: #ff174f;
+    transform: rotate(90deg);
 }
 
 .sidebar-links {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 15px;
     list-style: none;
-    margin-top: 20px;
+    margin-top: 10px;
+}
+
+.sidebar-links li {
+    width: 100%;
 }
 
 .sidebar-links a {
-    color: #eee;
+    color: #bbb;
     text-decoration: none;
-    font-size: 18px;
+    font-size: 17px;
     font-weight: 600;
-    transition: 0.3s;
     display: block;
-    padding: 10px 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.02);
+    padding: 14px 18px;
+    border-radius: 12px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.01);
+    background: rgba(255, 255, 255, 0.01);
 }
 
-.sidebar-links a:hover {
-    color: #ff174f;
-    padding-left: 8px;
+.sidebar-links a:hover, .sidebar-links li.active a {
+    color: #fff;
+    background: rgba(255, 23, 79, 0.1);
+    border-left: 4px solid #ff174f;
+    padding-left: 22px;
 }
-body.rtl .sidebar-links a:hover {
-    padding-left: 0;
-    padding-right: 8px;
+body.rtl .sidebar-links a:hover, body.rtl .sidebar-links li.active a {
+    border-left: none;
+    border-right: 4px solid #ff174f;
+    padding-left: 18px;
+    padding-right: 22px;
 }
 
 .sidebar-overlay {
@@ -229,10 +244,11 @@ body.rtl .sidebar-links a:hover {
     left: 0;
     width: 100vw;
     height: 100vh;
-    background: rgba(0, 0, 0, 0.6);
-    backdrop-filter: blur(4px);
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(6px);
     z-index: 99;
     display: none;
+    animation: fadeIn 0.3s ease;
 }
 
 /* ===== HERO ===== */
@@ -271,7 +287,6 @@ color:white;
 border-radius:14px;
 text-decoration:none;
 font-weight:800;
-transition: 0.3s;
 cursor: pointer;
 border: none;
 }
@@ -327,7 +342,6 @@ backdrop-filter:blur(12px);
 border: 1px solid rgba(255,255,255,0.05);
 padding: 35px;
 border-radius: 20px;
-transition: .4s cubic-bezier(0.16, 1, 0.3, 1);
 display: flex;
 flex-direction: column;
 gap: 20px;
@@ -417,7 +431,6 @@ border-radius: 12px;
 text-decoration: none;
 font-weight: 600;
 font-size: 15px;
-transition: .3s;
 }
 
 .download:hover{
@@ -469,7 +482,6 @@ font-weight: 700;
     display: flex;
     flex-direction: column;
     gap: 10px;
-    transition: 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .input-card:focus-within {
@@ -512,7 +524,6 @@ font-weight: 700;
     border-radius: 16px;
     border: none;
     cursor: pointer;
-    transition: 0.3s;
     box-shadow: 0 8px 25px rgba(255,23,79,0.3);
 }
 
@@ -551,7 +562,6 @@ font-weight: 700;
     padding: 25px 15px;
     text-align: center;
     position: relative;
-    transition: 0.3s;
 }
 
 .macro-box:hover {
@@ -603,6 +613,125 @@ body.rtl .premium-rec-text {
     border-right: 3px solid #ff174f;
 }
 
+/* ===== تصميم قسم مستكشف الوظائف الحركية ===== */
+.explorer-wrapper {
+    background: linear-gradient(135deg, rgba(15, 15, 15, 0.7) 0%, rgba(5, 5, 5, 0.9) 100%);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 40px;
+    border-radius: 28px;
+    max-width: 950px;
+    margin: 0 auto;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+}
+
+.filter-container {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 35px;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    color: #aaa;
+    padding: 10px 22px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.filter-btn.active, .filter-btn:hover {
+    background: #ff174f;
+    color: white;
+    border-color: #ff174f;
+    box-shadow: 0 5px 15px rgba(255, 23, 79, 0.3);
+}
+
+.exercise-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 20px;
+}
+
+.exercise-card {
+    background: rgba(255, 255, 255, 0.01);
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    border-radius: 16px;
+    padding: 24px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.exercise-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(255, 23, 79, 0.4);
+    background: rgba(255, 23, 79, 0.02);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+}
+
+.exercise-card h4 {
+    font-size: 18px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 12px;
+}
+
+.exercise-tag {
+    display: inline-block;
+    font-size: 11px;
+    background: rgba(255, 23, 79, 0.1);
+    color: #ff174f;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-weight: 700;
+}
+
+/* النافذة المنبثقة التفاعلية لشرح التشريح والميكانيكا الحركية (Modal) */
+.modal {
+    position: fixed;
+    top: 0; left: 0; width: 100vw; height: 100vh;
+    background: rgba(0,0,0,0.85);
+    backdrop-filter: blur(8px);
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0; pointer-events: none; z-index: 2000;
+}
+
+.modal.open {
+    opacity: 1; pointer-events: auto;
+}
+
+.modal-content {
+    background: #0d0d0d;
+    border: 1px solid rgba(255, 23, 79, 0.2);
+    padding: 40px; border-radius: 24px;
+    max-width: 550px; width: 90%; position: relative;
+    box-shadow: 0 25px 60px rgba(0,0,0,0.8);
+    animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.close-modal {
+    position: absolute; top: 20px; left: 25px;
+    font-size: 24px; cursor: pointer; color: #555;
+}
+body.rtl .close-modal { left: auto; right: 25px; }
+
+.close-modal:hover { color: #ff174f; }
+
+.modal-content h3 {
+    font-size: 24px; font-weight: 800; color: #ff174f; margin-bottom: 20px;
+}
+
+.modal-body p {
+    color: #ccc; font-size: 15px; margin-bottom: 15px; line-height: 1.6;
+}
+
+.modal-body strong { color: #fff; }
+
 /* FOOTER */
 footer{
 text-align:center;
@@ -624,7 +753,7 @@ font-size: 14px;
     .calc-grid {
         grid-template-columns: 1fr;
     }
-    .calc-premium-wrapper {
+    .calc-premium-wrapper, .explorer-wrapper {
         padding: 30px 20px;
     }
 }
@@ -662,14 +791,15 @@ font-size: 14px;
 
 <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
-<!-- المنيو الجانبي المتكامل -->
+<!-- المنيو الجانبي المتكامل والمطور بسلاسة تامة فائقة الفخامة -->
 <div class="sidebar" id="sidebarMenu">
     <button class="sidebar-close" id="sidebarClose">✕</button>
     <ul class="sidebar-links">
-        <li><a href="#" id="menuHome">Home</a></li>
-        <li><a href="#programs" id="menuProg">Training Programs</a></li>
-        <li><a href="#nutrition" id="menuNutri">Nutrition Plans</a></li>
-        <li><a href="#calculator" id="menuCalc">Calorie & Macros Calculator</a></li>
+        <li class="active" id="liHome"><a href="#" id="menuHome">Home</a></li>
+        <li id="liProg"><a href="#programs" id="menuProg">Training Programs</a></li>
+        <li id="liNutri"><a href="#nutrition" id="menuNutri">Nutrition Plans</a></li>
+        <li id="liCalc"><a href="#calculator" id="menuCalc">Calorie & Macros Calculator</a></li>
+        <li id="liExplorer"><a href="#explorer" id="menuExplorer">Movement Explorer</a></li>
     </ul>
 </div>
 
@@ -720,7 +850,7 @@ font-size: 14px;
         <div class="card-specs">
             <div class="spec-item">
                 <span class="spec-label" id="lbl1_1">Days</span>
-                <span class="spec-value" id="val1_1">3–4</span>
+                <span class="spec-value num-font" id="val1_1">3–4</span>
             </div>
             <div class="spec-item">
                 <span class="spec-label" id="lbl1_2">Level</span>
@@ -745,7 +875,7 @@ font-size: 14px;
         <div class="card-specs">
             <div class="spec-item">
                 <span class="spec-label" id="lbl2_1">Days</span>
-                <span class="spec-value" id="val2_1">4–5</span>
+                <span class="spec-value num-font" id="val2_1">4–5</span>
             </div>
             <div class="spec-item">
                 <span class="spec-label" id="lbl2_2">Level</span>
@@ -770,7 +900,7 @@ font-size: 14px;
         <div class="card-specs">
             <div class="spec-item">
                 <span class="spec-label" id="lbl3_1">Days</span>
-                <span class="spec-value" id="val3_1">4–6</span>
+                <span class="spec-value num-font" id="val3_1">4–6</span>
             </div>
             <div class="spec-item">
                 <span class="spec-label" id="lbl3_2">Level</span>
@@ -853,15 +983,15 @@ font-size: 14px;
     <div class="calc-grid">
         <div class="input-card">
             <label id="lblWeight">Weight (kg)</label>
-            <input type="number" id="weight" placeholder="00">
+            <input type="number" id="weight" placeholder="00" class="num-font">
         </div>
         <div class="input-card">
             <label id="lblHeight">Height (cm)</label>
-            <input type="number" id="height" placeholder="00">
+            <input type="number" id="height" placeholder="00" class="num-font">
         </div>
         <div class="input-card">
             <label id="lblAge">Age</label>
-            <input type="number" id="age" placeholder="00">
+            <input type="number" id="age" placeholder="00" class="num-font">
         </div>
         <div class="input-card">
             <label id="lblGoal">Fitness Goal</label>
@@ -890,22 +1020,22 @@ font-size: 14px;
         <div class="macros-display-grid">
             <!-- كرت السعرات الرئيسي -->
             <div class="macro-box calories-main">
-                <div class="macro-num" id="caloriesValue">0</div>
+                <div class="macro-num num-font" id="caloriesValue">0</div>
                 <div class="macro-label" id="lblResCalories">Calories</div>
             </div>
             <!-- كرت البروتين -->
             <div class="macro-box">
-                <div class="macro-num" id="proteinValue">0g</div>
+                <div class="macro-num num-font" id="proteinValue">0g</div>
                 <div class="macro-label" id="lblResProtein">Protein</div>
             </div>
             <!-- كرت الكارب -->
             <div class="macro-box">
-                <div class="macro-num" id="carbsValue">0g</div>
+                <div class="macro-num num-font" id="carbsValue">0g</div>
                 <div class="macro-label" id="lblResCarbs">Carbs</div>
             </div>
             <!-- كرت الدهون -->
             <div class="macro-box">
-                <div class="macro-num" id="fatsValue">0g</div>
+                <div class="macro-num num-font" id="fatsValue">0g</div>
                 <div class="macro-label" id="lblResFats">Fats</div>
             </div>
         </div>
@@ -914,10 +1044,45 @@ font-size: 14px;
 </div>
 </section>
 
+<!-- ===== قسم مستكشف الوظائف الحركية التفاعلي الجديد ===== -->
+<section class="section" id="explorer">
+<h2 class="title" id="explorerTitle">Movement Explorer</h2>
+
+<div class="explorer-wrapper">
+    <!-- فلاتر ميكانيكية الحركة وأنماط التدريب -->
+    <div class="filter-container">
+        <button class="filter-btn active" data-filter="all" id="fltAll">All</button>
+        <button class="filter-btn" data-filter="push" id="fltPush">Push Patterns</button>
+        <button class="filter-btn" data-filter="pull" id="fltPull">Pull Patterns</button>
+        <button class="filter-btn" data-filter="legs" id="fltLegs">Legs / Lower Body</button>
+    </div>
+
+    <!-- شبكة عرض كروت التمارين المستكشفة -->
+    <div class="exercise-grid" id="exerciseGrid">
+        <!-- يتم تحميلها تلقائياً عبر السكريبت باللغتين -->
+    </div>
+</div>
+</section>
+
 <footer id="footerText">
 © 2026 Ayham Elite Fitness
 </footer>
 
+</div>
+
+<!-- النافذة التفاعلية المنبثقة لشرح الحركات (Modal) -->
+<div class="modal" id="exerciseModal">
+    <div class="modal-content">
+        <span class="close-modal" id="closeModal">✕</span>
+        <h3 id="modalTitle">Exercise Name</h3>
+        <div class="modal-body">
+            <p><strong id="mdlblPattern">Mechanical Pattern:</strong> <span id="modalPattern"></span></p>
+            <p><strong id="mdlblMuscle">Target Muscles:</strong> <span id="modalMuscle"></span></p>
+            <p><strong id="mdlblDesc">Elite Execution Method:</strong></p>
+            <p id="modalInstructions"></p>
+            <p><strong id="mdlblSets">Suggested Sets & Reps:</strong> <span id="modalSets" class="num-font"></span></p>
+        </div>
+    </div>
 </div>
 
 <script>
@@ -939,11 +1104,37 @@ function closeMenu() {
 sidebarClose.addEventListener('click', closeMenu);
 sidebarOverlay.addEventListener('click', closeMenu);
 
-document.querySelectorAll('.sidebar-links a').forEach(link => {
-    link.addEventListener('click', closeMenu);
+// السيطرة على تفعيل الروابط بداخل المنيو بشكل انسيابي احترافي
+const sidebarLinks = document.querySelectorAll('.sidebar-links li');
+sidebarLinks.forEach(link => {
+    link.addEventListener('click', () => {
+        sidebarLinks.forEach(l => l.classList.remove('active'));
+        link.classList.add('active');
+        closeMenu();
+    });
 });
 
-// نظام الترجمة واللغات المتكامل
+// قاعدة بيانات التمارين والوظائف الحركية ثنائية اللغة لـ "مستكشف الحركة"
+const exercisesData = {
+    en: [
+        { id: 1, name: "Barbell Bench Press", pattern: "push", muscle: "Chest (Pectorals), Anterior Deltoid, Triceps", sets: "4 Sets × 8-12 Reps", desc: "Lie flat on a bench, grip the barbell slightly wider than shoulder-width. Lower the bar smoothly to your mid-chest, then push upward explosively while squeezing your chest muscles." },
+        { id: 2, name: "Dumbbell Overhead Press", pattern: "push", muscle: "Anterior & Lateral Deltoids, Triceps", sets: "3 Sets × 10 Reps", desc: "Sit with back supported, raise dumbbells to ear level. Press straight up without locking elbows fully at the top to maintain constant tension on shoulders." },
+        { id: 3, name: "Pull-Ups", pattern: "pull", muscle: "Latissimus Dorsi (Lats), Rhomboids, Biceps", sets: "3 Sets × Max Reps", desc: "Hang from a bar with a wide grip. Pull your chest up toward the bar by engaging your back muscles until your chin clears the bar, then lower with total control." },
+        { id: 4, name: "Barbell Bent-Over Row", pattern: "pull", muscle: "Mid-Back, Lats, Rear Deltoids, Biceps", sets: "4 Sets × 10 Reps", desc: "Hinge at the hips at a 45-degree angle keeping your back perfectly flat. Pull the bar to your lower ribcage, pulling from your elbows and squeezing your shoulder blades." },
+        { id: 5, name: "Barbell Squat", pattern: "legs", muscle: "Quadriceps, Glutes, Hamstrings", sets: "4 Sets × 8 Reps", desc: "Place the barbell on your upper traps. Drive your hips back and down as if sitting in a chair until thighs are parallel to the floor, then drive up through mid-foot." },
+        { id: 6, name: "Romanian Deadlift", pattern: "legs", muscle: "Hamstrings, Glutes, Erector Spinae", sets: "3 Sets × 12 Reps", desc: "Stand tall holding a barbell. Push your hips backward and slide the bar down your thighs, keeping knees slightly unlocked and back flat until you feel a deep stretch in hamstrings." }
+    ],
+    ar: [
+        { id: 1, name: "بنش برس بالبار (Bench Press)", pattern: "push", muscle: "الصدر السفلي والأوسط، الأكتاف الأمامية، الترايسبس", sets: "4 جولات × 8-12 تكرار", desc: "استلقِ على بنش مستوٍ، اقبض على البار بعرض أوسع من الكتفين بقليل، أنزل البار ببطء لمنتصف الصدر ثم ادفعه بقوة لأعلى مع تفعيل وعصر عضلات الصدر." },
+        { id: 2, name: "ضغط أكتاف بالدمبل (Overhead Press)", pattern: "push", muscle: "الأكتاف الأمامية والجانبية، الترايسبس", sets: "3 جولات × 10 تكرارات", desc: "اجلس مع دعم الظهر، ارفع الدمبلز لمستوى الأذن، ثم ادفع للأعلى بشكل مستقيم دون قفل مفصل الكوع بالكامل في الأعلى للحفاظ على الضغط المستمر." },
+        { id: 3, name: "العقلة (Pull-Ups)", pattern: "pull", muscle: "الظهر العريض (اللاتس)، عضلات المجنص، البايسبس", sets: "3 جولات × أقصى تكرار", desc: "تعلق بالبار بقبضة واسعة، اسحب جسمك للأعلى باستخدام عضلات الظهر حتى يتجاوز ذقنك البار، ثم انزل ببطء وتحكم كامل." },
+        { id: 4, name: "الجدف بالبار (Barbell Row)", pattern: "pull", muscle: "منتصف الظهر، اللاتس، الأكتاف الخلفية، البايسبس", sets: "4 جولات × 10 تكرارات", desc: "انحنِ بجذعك للأمام بزاوية 45 درجة مع الحفاظ على استقامة الظهر تماماً، اسحب البار باتجاه أسفل الصدر وعصر لوحي الكتف." },
+        { id: 5, name: "السكوات بالبار (Barbell Squat)", pattern: "legs", muscle: "الأرجل الأمامية (الكوادز)، الجلوتس، الخلفيات", sets: "4 جولات × 8 تكرارات", desc: "ضع البار على عضلات الترابيس، انزل بمؤخرتك للخلف ولأسفل كأنك تجلس على كرسي حتى تصبح الفخذين موازية للأرض ثم ادفع للأعلى بقوة منتصف قدمك." },
+        { id: 6, name: "الرفعة الميتة رومانية (Romanian Deadlift)", pattern: "legs", muscle: "الأرجل الخلفية، الجلوتس، أسفل الظهر", sets: "3 جولات × 12 تكرار", desc: "اقف مستقيماً ممسكاً بالبار، ادفع الحوض للخلف وانزل بالبار بمحاذاة ساقيك مع الحفاظ على ركبتيك مثنيتين قليلاً وظهرك مستقيم تماماً لشعور التمدد العالي في الخلفيات." }
+    ]
+};
+
+// نظام الترجمة واللغات المتكامل للموقع بالكامل
 const langToggle = document.getElementById('langToggle');
 const langText = document.getElementById('langText');
 
@@ -972,8 +1163,11 @@ const translations = {
         lblResFats: "Fats",
         secTitle1: "Training Programs",
         secTitle2: "Nutrition Plans",
+        explorerTitle: "Movement Explorer",
+        fltAll: "All", fltPush: "Push Patterns", fltPull: "Pull Patterns", fltLegs: "Legs / Lower Body",
+        mdlblPattern: "Mechanical Pattern:", mdlblMuscle: "Target Muscles:", mdlblDesc: "Elite Execution Method:", mdlblSets: "Suggested Sets & Reps:",
         footer: "© 2026 Ayham Elite Fitness",
-        menuHome: "Home", menuProg: "Training Programs", menuNutri: "Nutrition Plans", menuCalc: "Calorie Calculator",
+        menuHome: "Home", menuProg: "Training Programs", menuNutri: "Nutrition Plans", menuCalc: "Calorie Calculator", menuExplorer: "Movement Explorer",
         recBulk: "💡 Coach Ayham's Tip: Targets set for clean muscle growth! We increased your Carbs & Calories. Scroll up and download the 'Bulking Plan' to start.",
         recCut: "💡 Coach Ayham's Tip: Targets set for fat burning while protecting your muscles with high protein! Scroll up and download the 'Cutting Plan'.",
         alertField: "Please fill in all fields correctly!",
@@ -1007,8 +1201,11 @@ const translations = {
         lblResFats: "دهون صحية",
         secTitle1: "البرامج التدريبية",
         secTitle2: "الأنظمة الغذائية",
+        explorerTitle: "مستكشف الوظائف الحركية",
+        fltAll: "الكل", fltPush: "تمارين الدفع (Push)", fltPull: "تمارين السحب (Pull)", fltLegs: "تمارين الأرجل (Legs)",
+        mdlblPattern: "نمط الحركة الميكانيكية:", mdlblMuscle: "العضلات المستهدفة:", mdlblDesc: "طريقة الأداء الاحترافية:", mdlblSets: "الجولات والتكرارات المقترحة:",
         footer: "© 2026 أيهم إليت فيتنس. جميع الحقوق محفوظة.",
-        menuHome: "الرئيسية", menuProg: "البرامج التدريبية", menuNutri: "الخطط الغذائية", menuCalc: "حاسبة السعرات",
+        menuHome: "الرئيسية", menuProg: "البرامج التدريبية", menuNutri: "الخطط الغذائية", menuCalc: "حاسبة السعرات", menuExplorer: "مستكشف الحركة",
         recBulk: "💡 نصيحة الكابتن أيهم: تم ضبط الأرقام للبناء العضلي الصافي! رفعنا الكاربوهيدرات لتوفير طاقة قصوى. اصعد لأعلى وحمّل 'خطة التضخيم'.",
         recCut: "💡 نصيحة الكابتن أيهم: تم حساب العجز اللازم لحرق الدهون مع إبقاء البروتين عالياً لحماية عضلاتك من الهدم. اصعد لأعلى وحمّل 'خطة التنشيف'.",
         alertField: "الرجاء إدخال البيانات بشكل صحيح في جميع الحقول!",
@@ -1040,30 +1237,28 @@ function calculateMacros() {
     let tdee = Math.round(bmr * activity); // سعرات المحافظة
     
     let targetCalories = tdee;
-    let proteinGrams = Math.round(weight * 2.2); // 2.2 جرام لكل كيلو جرام
-    let fatsGrams = Math.round(weight * 0.9);    // 0.9 جرام دهون صحية لكل كيلو جرام
+    let proteinGrams = Math.round(weight * 2.2); 
+    let fatsGrams = Math.round(weight * 0.9);    
 
     if (goal === 'cut') {
-        targetCalories = tdee - 500; // عجز للتنشيف
+        targetCalories = tdee - 500; 
         document.getElementById('recommendationText').textContent = translations[currentLang].recCut;
     } else if (goal === 'bulk') {
-        targetCalories = tdee + 400; // فائض للتضخيم
+        targetCalories = tdee + 400; 
         proteinGrams = Math.round(weight * 2.0); 
         fatsGrams = Math.round(weight * 1.0);
         document.getElementById('recommendationText').textContent = translations[currentLang].recBulk;
     }
 
-    // حساب كمية الكارب المتبقية من السعرات
-    // الجرام الواحد: البروتين = 4، الكارب = 4، الدهون = 9 سعرات
     const proteinCalories = proteinGrams * 4;
     const fatsCalories = fatsGrams * 9;
     const remainingCalories = targetCalories - (proteinCalories + fatsCalories);
     let carbsGrams = Math.round(remainingCalories / 4);
     
-    if (carbsGrams < 50) carbsGrams = 50; // حد أدنى للكارب لسلامة الجسم
+    if (carbsGrams < 50) carbsGrams = 50; 
 
-    // عرض النتائج على الشاشة بشكل فخم جداً
-    document.getElementById('caloriesValue').textContent = targetCalories;
+    // عرض النتائج على الشاشة بدعم الخط الرياضي الفخم
+    document.getElementById('caloriesValue').textContent = targetCalories.toLocaleString();
     document.getElementById('proteinValue').textContent = proteinGrams + 'g';
     document.getElementById('carbsValue').textContent = carbsGrams + 'g';
     document.getElementById('fatsValue').textContent = fatsGrams + 'g';
@@ -1071,7 +1266,53 @@ function calculateMacros() {
     document.getElementById('calcResult').style.display = 'block';
 }
 
-// تبديل اللغات للموقع بالكامل والمنيو والحاسبة والماكروز
+// دالة بناء وعرض كروت مستكشف الوظائف الحركية
+const exerciseGrid = document.getElementById('exerciseGrid');
+
+function displayExercises(filter = 'all') {
+    exerciseGrid.innerHTML = '';
+    const activeData = exercisesData[currentLang];
+    const filtered = filter === 'all' ? activeData : activeData.filter(ex => ex.pattern === filter);
+    
+    filtered.forEach(ex => {
+        const card = document.createElement('div');
+        card.className = 'exercise-card';
+        card.innerHTML = `
+            <h4>${ex.name}</h4>
+            <span class="exercise-tag">${ex.pattern.toUpperCase()}</span>
+        `;
+        card.addEventListener('click', () => openExerciseModal(ex));
+        exerciseGrid.appendChild(card);
+    });
+}
+
+// تشغيل فلاتر تصنيفات الحركة لمستكشف الوظائف الحركية
+const filterBtns = document.querySelectorAll('.filter-btn');
+filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        displayExercises(btn.getAttribute('data-filter'));
+    });
+});
+
+// السيطرة على تشغيل نافذة الشرح المنبثقة (Modal)
+const modal = document.getElementById('exerciseModal');
+const closeModal = document.getElementById('closeModal');
+
+function openExerciseModal(ex) {
+    document.getElementById('modalTitle').innerText = ex.name;
+    document.getElementById('modalPattern').innerText = ex.pattern.toUpperCase();
+    document.getElementById('modalMuscle').innerText = ex.muscle;
+    document.getElementById('modalInstructions').innerText = ex.desc;
+    document.getElementById('modalSets').innerText = ex.sets;
+    modal.classList.add('open');
+}
+
+closeModal.addEventListener('click', () => modal.classList.remove('open'));
+window.addEventListener('click', (e) => { if(e.target === modal) modal.classList.remove('open'); });
+
+// تبديل اللغات للموقع بالكامل والمنيو والحاسبة والمستكشف الجديد فوراً
 langToggle.addEventListener('click', () => {
     currentLang = currentLang === 'en' ? 'ar' : 'en';
     
@@ -1094,8 +1335,9 @@ langToggle.addEventListener('click', () => {
     document.getElementById('menuProg').textContent = translations[currentLang].menuProg;
     document.getElementById('menuNutri').textContent = translations[currentLang].menuNutri;
     document.getElementById('menuCalc').textContent = translations[currentLang].menuCalc;
+    document.getElementById('menuExplorer').textContent = translations[currentLang].menuExplorer;
 
-    // مدخلات ومسميات لوحة الحاسبة
+    // مدخلات الحاسبة
     document.getElementById('calcTitle').textContent = translations[currentLang].calcTitle;
     document.getElementById('lblWeight').textContent = translations[currentLang].lblWeight;
     document.getElementById('lblHeight').textContent = translations[currentLang].lblHeight;
@@ -1110,11 +1352,22 @@ langToggle.addEventListener('click', () => {
     document.getElementById('opt4').textContent = translations[currentLang].opt4;
     document.getElementById('btnCalculate').textContent = translations[currentLang].btnCalculate;
     
-    // عناوين بطاقات النتائج
     document.getElementById('lblResCalories').textContent = translations[currentLang].lblResCalories;
     document.getElementById('lblResProtein').textContent = translations[currentLang].lblResProtein;
     document.getElementById('lblResCarbs').textContent = translations[currentLang].lblResCarbs;
     document.getElementById('lblResFats').textContent = translations[currentLang].lblResFats;
+
+    // نصوص الـ Explorer وعناصر الـ Modal
+    document.getElementById('explorerTitle').textContent = translations[currentLang].explorerTitle;
+    document.getElementById('fltAll').textContent = translations[currentLang].fltAll;
+    document.getElementById('fltPush').textContent = translations[currentLang].fltPush;
+    document.getElementById('fltPull').textContent = translations[currentLang].fltPull;
+    document.getElementById('fltLegs').textContent = translations[currentLang].fltLegs;
+    
+    document.getElementById('mdlblPattern').textContent = translations[currentLang].mdlblPattern;
+    document.getElementById('mdlblMuscle').textContent = translations[currentLang].mdlblMuscle;
+    document.getElementById('mdlblDesc').textContent = translations[currentLang].mdlblDesc;
+    document.getElementById('mdlblSets').textContent = translations[currentLang].mdlblSets;
 
     if(document.getElementById('calcResult').style.display === 'block') {
         const goal = document.getElementById('goal').value;
@@ -1131,10 +1384,16 @@ langToggle.addEventListener('click', () => {
         for (let j = 1; j <= 3; j++) {
             if(document.getElementById(`lbl${i}_${j}`)) {
                 document.getElementById(`lbl${i}_${j}`).textContent = translations[currentLang][`lbl${i}_${j}`];
-                document.getElementById(`val${i}_${j}`).textContent = translations[currentLang][`val${i}_${j}`];
+                if(j !== 1 || i > 3) {
+                     document.getElementById(`val${i}_${j}`).textContent = translations[currentLang][`val${i}_${j}`];
+                }
             }
         }
     }
+
+    // إعادة بناء وعرض كروت مستكشف التمارين باللغة الجديدة فوراً
+    const activeFilter = document.querySelector('.filter-btn.active').getAttribute('data-filter');
+    displayExercises(activeFilter);
 });
 
 // انيميشن ظهور الأقسام عند النزول
@@ -1185,6 +1444,9 @@ if(p.y<0||p.y>canvas.height)p.dy*=-1;
 requestAnimationFrame(animate);
 }
 animate();
+
+// تحميل وعرض مستكشف التمارين لأول مرة عند تشغيل الصفحة
+displayExercises();
 </script>
 
 </body>
