@@ -3,10 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ayham Fitness</title>
-  <!-- update -->
+<title>Ayham Fitness Pro</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800;900&display=swap" rel="stylesheet">
 
 <style>
 
@@ -17,130 +16,102 @@ box-sizing:border-box;
 font-family:'Inter',sans-serif;
 }
 
-html{
-scroll-behavior:smooth;
-}
-
 body{
 background:#050505;
 color:white;
 overflow-x:hidden;
 }
 
-.background-grid{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background-image:
-linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px),
-linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px);
-background-size:50px 50px;
-z-index:-2;
-}
-
+/* background glow */
 .glow{
 position:fixed;
-top:-250px;
-right:-250px;
+top:-200px;
+right:-200px;
 width:700px;
 height:700px;
 background:#ff174f;
-border-radius:50%;
-filter:blur(220px);
+filter:blur(200px);
 opacity:.18;
-z-index:-1;
+border-radius:50%;
 animation:floatGlow 8s ease-in-out infinite;
 }
 
 @keyframes floatGlow{
-0%{transform:translateY(0px);}
-50%{transform:translateY(50px);}
-100%{transform:translateY(0px);}
+0%{transform:translateY(0);}
+50%{transform:translateY(70px);}
+100%{transform:translateY(0);}
 }
 
+/* container */
 .container{
 width:min(1200px,90%);
 margin:auto;
 }
 
+/* header */
 header{
 display:flex;
 justify-content:space-between;
 align-items:center;
-padding:30px 0;
+padding:25px 0;
+animation:fadeDown .8s ease;
 }
 
 .logo{
-display:flex;
-align-items:center;
-gap:15px;
-}
-
-.logo-box{
-width:60px;
-height:60px;
-background:#e1062c;
-border-radius:18px;
-display:flex;
-justify-content:center;
-align-items:center;
-font-size:35px;
+font-size:28px;
 font-weight:900;
-box-shadow:0 0 25px rgba(255,0,80,.4);
+color:#ff174f;
+letter-spacing:1px;
 }
 
-.logo h2{
-font-size:32px;
-}
-
-.logo span{
-color:#999;
-font-size:18px;
-}
-
-.nav{
+/* NAV */
+nav{
 display:flex;
 gap:15px;
+align-items:center;
 }
 
-.nav a{
+nav a{
 text-decoration:none;
-padding:14px 25px;
-border-radius:14px;
-font-weight:700;
+color:white;
+opacity:.7;
+font-weight:600;
 transition:.3s;
 }
 
-.instagram{
-background:#e1062c;
+nav a:hover{
+opacity:1;
+transform:translateY(-2px);
+}
+
+/* instagram button */
+.insta-btn{
+padding:10px 16px;
+border-radius:12px;
+background:linear-gradient(45deg,#feda75,#fa7e1e,#d62976,#962fbf,#4f5bd5);
 color:white;
+font-weight:800;
+text-decoration:none;
+box-shadow:0 0 25px rgba(255,0,100,.25);
+transition:.3s;
 }
 
-.whatsapp{
-background:#111;
-border:1px solid #333;
-color:white;
+.insta-btn:hover{
+transform:scale(1.05);
 }
 
-.nav a:hover{
-transform:translateY(-4px);
-}
-
+/* HERO */
 .hero{
 min-height:90vh;
 display:flex;
-justify-content:center;
 align-items:center;
+justify-content:center;
 text-align:center;
 }
 
 .hero h1{
-font-size:clamp(60px,9vw,120px);
-line-height:1;
+font-size:clamp(50px,8vw,120px);
 font-weight:900;
-margin-bottom:25px;
 animation:fadeUp 1s ease;
 }
 
@@ -149,125 +120,126 @@ color:#ff174f;
 }
 
 .hero p{
-max-width:850px;
-margin:auto;
-font-size:22px;
-color:#cfcfcf;
-line-height:1.8;
+max-width:700px;
+margin:20px auto;
+color:#bbb;
+font-size:18px;
 animation:fadeUp 1.2s ease;
 }
 
-.hero-buttons{
-margin-top:45px;
-display:flex;
-justify-content:center;
-gap:20px;
-flex-wrap:wrap;
-}
-
-.hero-buttons a{
-padding:22px 38px;
-border-radius:18px;
-font-size:20px;
-font-weight:700;
+.btn{
+display:inline-block;
+margin-top:25px;
+padding:16px 34px;
+background:#ff174f;
+color:white;
 text-decoration:none;
+border-radius:14px;
+font-weight:800;
 transition:.3s;
+animation:fadeUp 1.4s ease;
+box-shadow:0 0 25px rgba(255,23,79,.35);
 }
 
-.primary{
-background:#e1062c;
-color:white;
-box-shadow:0 0 35px rgba(255,0,70,.4);
+.btn:hover{
+transform:translateY(-5px) scale(1.05);
 }
 
-.secondary{
-background:#111;
-border:1px solid #333;
-color:white;
-}
-
-.hero-buttons a:hover{
-transform:translateY(-5px);
-}
-
-@keyframes fadeUp{
-from{
+/* SECTIONS */
+.section{
+padding:90px 0;
 opacity:0;
 transform:translateY(40px);
+transition:1s;
 }
-to{
+
+.section.show{
 opacity:1;
 transform:translateY(0);
 }
-}
 
-.section{
-padding:100px 0;
-}
-
-.section-title{
+.title{
 text-align:center;
-font-size:48px;
-margin-bottom:60px;
+font-size:42px;
+margin-bottom:50px;
+font-weight:900;
 }
 
+/* CARDS */
 .cards{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-gap:25px;
-}
-
-.card{
-background:#101010;
-border:1px solid #222;
-padding:35px;
-border-radius:22px;
-transition:.3s;
-}
-
-.card:hover{
-transform:translateY(-8px);
-border-color:#ff174f;
-}
-
-.icon{
-font-size:55px;
-margin-bottom:20px;
-}
-
-.card h3{
-font-size:28px;
-margin-bottom:15px;
-color:#ff174f;
-}
-
-.card p{
-color:#bbb;
-line-height:1.7;
-}
-
-footer{
-text-align:center;
-padding:40px;
-border-top:1px solid #222;
-color:#888;
-}
-
-@media(max-width:768px){
-
-header{
-flex-direction:column;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
 gap:20px;
 }
 
-.hero p{
-font-size:18px;
+.card{
+background:#111;
+padding:30px;
+border-radius:18px;
+border:1px solid #222;
+transition:.4s;
+opacity:0;
+transform:translateY(20px);
 }
 
-.hero-buttons a{
-width:100%;
+.card.show{
+opacity:1;
+transform:translateY(0);
 }
 
+.card:hover{
+transform:translateY(-12px) scale(1.03);
+border-color:#ff174f;
+box-shadow:0 10px 30px rgba(255,23,79,.2);
+}
+
+.card h3{
+color:#ff174f;
+margin-bottom:10px;
+}
+
+.card p{
+color:#aaa;
+line-height:1.6;
+}
+
+/* FOOTER */
+footer{
+text-align:center;
+padding:40px;
+color:#777;
+border-top:1px solid #222;
+margin-top:60px;
+}
+
+/* animations */
+@keyframes fadeUp{
+from{opacity:0; transform:translateY(40px);}
+to{opacity:1; transform:translateY(0);}
+}
+
+@keyframes fadeDown{
+from{opacity:0; transform:translateY(-30px);}
+to{opacity:1; transform:translateY(0);}
+}
+
+/* floating whatsapp */
+.float{
+position:fixed;
+bottom:20px;
+right:20px;
+background:#25D366;
+color:white;
+padding:14px 16px;
+border-radius:50px;
+font-weight:800;
+text-decoration:none;
+box-shadow:0 0 20px rgba(0,255,120,.3);
+transition:.3s;
+}
+
+.float:hover{
+transform:scale(1.1);
 }
 
 </style>
@@ -275,187 +247,71 @@ width:100%;
 
 <body>
 
-<div class="background-grid"></div>
 <div class="glow"></div>
 
 <div class="container">
 
 <header>
+<div class="logo">AYHAM</div>
 
-<div class="logo">
-<div class="logo-box">A</div>
-<div>
-<h2>Ayham <span>/ by Ayham</span></h2>
-</div>
-</div>
-
-<div class="nav">
-<a class="instagram" href="https://instagram.com/2yhamm" target="_blank">Instagram</a>
-<a class="whatsapp" href="https://wa.me/962799954369" target="_blank">WhatsApp</a>
-</div>
-
+<nav>
+<a href="#programs">Programs</a>
+<a href="#nutrition">Nutrition</a>
+<a class="insta-btn" href="https://instagram.com/2yhamm" target="_blank">Instagram</a>
+</nav>
 </header>
 
 <section class="hero">
-
 <div>
-
-<h1>
-Build Muscle With
-<br>
-<span>Science</span>
-</h1>
-
-<p>
-Professional fitness coaching, advanced training systems, nutrition plans, and real results.
-Built for athletes who want more than average.
-</p>
-
-<div class="hero-buttons">
-
-<a href="#training" class="primary">
-Training Programs
-</a>
-
-<a href="#nutrition" class="secondary">
-Nutrition Plans
-</a>
-
+<h1>Build Your <span>Elite Body</span></h1>
+<p>Professional coaching for muscle gain, fat loss, and performance optimization.</p>
+<a href="#programs" class="btn">Start Now</a>
 </div>
-
-</div>
-
 </section>
 
-<section class="section" id="training">
-
-<h2 class="section-title">
-Training Programs
-</h2>
+<section class="section" id="programs">
+<h2 class="title">Training Programs</h2>
 
 <div class="cards">
-
-<div class="card">
-<div class="icon">🏋️</div>
-<h3>Beginner</h3>
-<p>Complete beginner training system.</p>
+<div class="card"><h3>Beginner</h3><p>Start your fitness journey correctly.</p></div>
+<div class="card"><h3>Muscle Gain</h3><p>Build size with science-based training.</p></div>
+<div class="card"><h3>Fat Loss</h3><p>Burn fat while keeping muscle.</p></div>
 </div>
-
-<div class="card">
-<div class="icon">💪</div>
-<h3>Muscle Gain</h3>
-<p>Build size and strength efficiently.</p>
-</div>
-
-<div class="card">
-<div class="icon">🔥</div>
-<h3>Fat Loss</h3>
-<p>Lose fat while preserving muscle.</p>
-</div>
-
-</div>
-
 </section>
 
 <section class="section" id="nutrition">
-
-<h2 class="section-title">
-Nutrition Plans
-</h2>
+<h2 class="title">Nutrition Plans</h2>
 
 <div class="cards">
-
-<div class="card">
-<div class="icon">🥗</div>
-<h3>Cutting Diet</h3>
-<p>Structured fat-loss meal plans.</p>
+<div class="card"><h3>Cutting</h3><p>Lose fat with smart dieting.</p></div>
+<div class="card"><h3>Bulking</h3><p>Clean muscle gain nutrition.</p></div>
+<div class="card"><h3>Tracking</h3><p>Master calories & macros.</p></div>
 </div>
-
-<div class="card">
-<div class="icon">🍚</div>
-<h3>Bulking Diet</h3>
-<p>Muscle-building nutrition system.</p>
-</div>
-
-<div class="card">
-<div class="icon">📊</div>
-<h3>Macro Tracking</h3>
-<p>Track calories, protein and carbs.</p>
-</div>
-
-</div>
-
-</section>
-<section class="section">
-
-<h2 class="section-title">
-Why Choose Ayham?
-</h2>
-
-<div class="cards">
-
-<div class="card">
-<div class="icon">🎯</div>
-<h3>Evidence Based</h3>
-<p>
-Every program is based on real training science and proven methods.
-</p>
-</div>
-
-<div class="card">
-<div class="icon">⚡</div>
-<h3>Fast Results</h3>
-<p>
-Build muscle, lose fat and improve performance faster.
-</p>
-</div>
-
-<div class="card">
-<div class="icon">🏆</div>
-<h3>Personal Support</h3>
-<p>
-Direct support and guidance throughout your journey.
-</p>
-</div>
-
-</div>
-
 </section>
 
-<section class="section">
-
-<h2 class="section-title">
-Fitness Stats
-</h2>
-
-<div class="cards">
-
-<div class="card">
-<div class="icon">💪</div>
-<h3>500+</h3>
-<p>Training Sessions</p>
-</div>
-
-<div class="card">
-<div class="icon">🔥</div>
-<h3>100+</h3>
-<p>Transformation Plans</p>
-</div>
-
-<div class="card">
-<div class="icon">⭐</div>
-<h3>24/7</h3>
-<p>Support</p>
-</div>
-
-</div>
-
-</section>
 <footer>
-© 2026 Ayham Fitness
+© 2026 Ayham Fitness Pro
 </footer>
 
+<a class="float" href="https://wa.me/962799954369" target="_blank">WhatsApp</a>
+
 </div>
+
+<script>
+const sections=document.querySelectorAll('.section');
+const cards=document.querySelectorAll('.card');
+
+const observer=new IntersectionObserver(entries=>{
+entries.forEach(entry=>{
+if(entry.isIntersecting){
+entry.target.classList.add('show');
+}
+});
+},{threshold:0.15});
+
+sections.forEach(s=>observer.observe(s));
+cards.forEach(c=>observer.observe(c));
+</script>
 
 </body>
 </html>
