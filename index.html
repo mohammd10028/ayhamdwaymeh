@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ayham Elite</title>
+<title>Ayham Fitness Elite</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800;900&display=swap" rel="stylesheet">
 
@@ -16,55 +16,36 @@ font-family:'Inter',sans-serif;
 }
 
 body{
-background:#07070a;
+background:#050505;
 color:white;
 overflow-x:hidden;
 }
 
-/* ===== NEW BACKGROUND (Athlead style) ===== */
+/* ===== BACKGROUND ===== */
 .bg{
 position:fixed;
-inset:0;
+width:100%;
+height:100%;
 z-index:-2;
-background: radial-gradient(circle at top,#1a1a2e,#07070a);
+background:radial-gradient(circle at top,#1a0008,#050505);
 }
 
-/* floating blobs */
-.blob{
-position:absolute;
-width:500px;
-height:500px;
-border-radius:50%;
-filter:blur(160px);
-opacity:.25;
-animation:float 10s infinite ease-in-out;
+canvas{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+z-index:-1;
 }
 
-.blob:nth-child(1){
-background:#ff174f;
-top:-100px;
-left:-100px;
-}
-
-.blob:nth-child(2){
-background:#6c63ff;
-bottom:-120px;
-right:-120px;
-}
-
-@keyframes float{
-0%,100%{transform:translateY(0);}
-50%{transform:translateY(60px);}
-}
-
-/* container */
+/* ===== HEADER ===== */
 .container{
 width:min(1200px,90%);
 margin:auto;
 position:relative;
 }
 
-/* header */
 header{
 display:flex;
 justify-content:space-between;
@@ -72,96 +53,128 @@ align-items:center;
 padding:25px 0;
 position:sticky;
 top:0;
-backdrop-filter:blur(12px);
-background:rgba(0,0,0,0.3);
+backdrop-filter:blur(10px);
+background:rgba(0,0,0,0.4);
 z-index:10;
-border-bottom:1px solid rgba(255,255,255,0.05);
 }
 
 .logo{
-font-size:26px;
+font-size:28px;
 font-weight:900;
 color:#ff174f;
+letter-spacing:2px;
 }
 
-/* HERO */
+nav{
+display:flex;
+gap:18px;
+align-items:center;
+}
+
+nav a{
+color:white;
+text-decoration:none;
+opacity:.7;
+font-weight:600;
+transition:.3s;
+}
+
+nav a:hover{
+opacity:1;
+transform:translateY(-2px);
+}
+
+.insta{
+padding:10px 16px;
+border-radius:12px;
+background:linear-gradient(45deg,#feda75,#fa7e1e,#d62976,#962fbf,#4f5bd5);
+font-weight:800;
+}
+
+/* ===== HERO ===== */
 .hero{
-padding:120px 0 80px;
+min-height:90vh;
+display:flex;
+justify-content:center;
+align-items:center;
 text-align:center;
 }
 
 .hero h1{
-font-size:clamp(42px,7vw,90px);
+font-size:clamp(45px,8vw,110px);
 font-weight:900;
 }
 
 .hero span{
 color:#ff174f;
+text-shadow:0 0 25px #ff174f;
 }
 
 .hero p{
-margin-top:15px;
-color:#aaa;
-max-width:600px;
-margin-inline:auto;
+color:#bbb;
+max-width:700px;
+margin:20px auto;
 }
 
 .btn{
 display:inline-block;
 margin-top:25px;
-padding:14px 30px;
+padding:16px 40px;
 background:#ff174f;
-border-radius:12px;
 color:white;
+border-radius:14px;
 text-decoration:none;
 font-weight:800;
-transition:.3s;
 }
 
-.btn:hover{
-transform:scale(1.05);
-}
-
-/* ===== SECTIONS (Athlead cards style) ===== */
+/* ===== SECTIONS ===== */
 .section{
-padding:80px 0;
+padding:90px 0;
+opacity:0;
+transform:translateY(80px) scale(0.95);
+filter:blur(10px);
+transition:1s;
+cursor:pointer;
 }
 
-.section-title{
-font-size:32px;
+.section.show{
+opacity:1;
+transform:translateY(0) scale(1);
+filter:blur(0);
+}
+
+.title{
+text-align:center;
+font-size:40px;
+margin-bottom:50px;
 font-weight:900;
-margin-bottom:30px;
-text-align:left;
 }
 
-/* GRID CARDS (NEW STYLE) */
-.grid{
+/* ===== CARDS ===== */
+.cards{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-gap:18px;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:20px;
 }
 
 .card{
 background:rgba(255,255,255,0.03);
-border:1px solid rgba(255,255,255,0.08);
-padding:25px;
-border-radius:16px;
-transition:.4s;
 backdrop-filter:blur(10px);
-cursor:pointer;
-position:relative;
-overflow:hidden;
+border:1px solid rgba(255,255,255,0.08);
+padding:30px;
+border-radius:18px;
+transition:.4s;
 }
 
 .card:hover{
-transform:translateY(-10px);
+transform:translateY(-12px) scale(1.04);
 border-color:#ff174f;
-box-shadow:0 10px 35px rgba(255,23,79,.2);
+box-shadow:0 10px 40px rgba(255,23,79,.25);
 }
 
 .card h3{
 color:#ff174f;
-margin-bottom:8px;
+margin-bottom:10px;
 }
 
 .card p{
@@ -173,13 +186,12 @@ line-height:1.6;
 .download{
 display:inline-block;
 margin-top:15px;
-padding:10px 16px;
+padding:10px 18px;
 background:#ff174f;
 color:white;
 border-radius:10px;
 text-decoration:none;
 font-weight:700;
-font-size:14px;
 }
 
 /* FOOTER */
@@ -187,86 +199,76 @@ footer{
 text-align:center;
 padding:40px;
 color:#777;
-border-top:1px solid rgba(255,255,255,0.05);
+border-top:1px solid #222;
 margin-top:60px;
-}
-
-/* animation */
-.section{
-opacity:0;
-transform:translateY(30px);
-transition:1s;
-}
-
-.section.show{
-opacity:1;
-transform:translateY(0);
 }
 </style>
 </head>
 
 <body>
 
-<div class="bg">
-<div class="blob"></div>
-<div class="blob"></div>
-</div>
+<div class="bg"></div>
+<canvas id="particles"></canvas>
 
 <div class="container">
 
 <header>
 <div class="logo">AYHAM ELITE</div>
+
+<nav>
+<a href="#programs">Programs</a>
+<a href="#nutrition">Nutrition</a>
+<a class="insta" href="https://instagram.com/2yhamm" target="_blank">Instagram</a>
+</nav>
 </header>
 
 <section class="hero">
-<h1>Build <span>Elite Body</span></h1>
-<p>Train smarter. Eat better. Become unstoppable with structured programs.</p>
-<a class="btn" href="#programs">Explore Programs</a>
+<div>
+<h1>BUILD <span>ELITE BODY</span></h1>
+<p>Train like a beast. Become unstoppable.</p>
+<a href="#programs" class="btn">ENTER SYSTEM</a>
+</div>
 </section>
 
-<section class="section" id="programs">
-<h2 class="section-title">Training Programs</h2>
+<section class="section" id="programs" onclick="openSection('programs')">
+<h2 class="title">Training Programs</h2>
 
-<div class="grid">
-
+<div class="cards">
 <div class="card">
 <h3>Beginner</h3>
-<p>Start your fitness journey with strong fundamentals.</p>
+<p>Start strong fundamentals.</p>
 <a class="download" href="files/beginner.pdf" download>Download</a>
 </div>
 
 <div class="card">
 <h3>Hypertrophy</h3>
-<p>Muscle growth optimized training system.</p>
+<p>Muscle growth system.</p>
 <a class="download" href="files/bulking.pdf" download>Download</a>
 </div>
 
 <div class="card">
-<h3>Fat Loss</h3>
-<p>Burn fat while preserving muscle mass.</p>
+<h3>Fat Burn</h3>
+<p>Cut fat & keep muscle.</p>
 <a class="download" href="files/fatloss.pdf" download>Download</a>
 </div>
-
 </div>
 </section>
 
 <section class="section" id="nutrition">
-<h2 class="section-title">Nutrition Plans</h2>
+<h2 class="title">Nutrition Plans</h2>
 
-<div class="grid">
-
+<div class="cards">
 <div class="card">
 <h3>Cutting</h3>
-<p>Lean body definition nutrition plan.</p>
+<p>Lean body plan.</p>
 <a class="download" href="files/cutting.pdf" download>Download</a>
 </div>
 
 <div class="card">
 <h3>Bulking</h3>
-<p>Clean mass gain structured diet.</p>
+<p>Clean mass gain.</p>
 <a class="download" href="files/bulking.pdf" download>Download</a>
 </div>
-
 </div>
 </section>
 
@@ -277,7 +279,7 @@ transform:translateY(0);
 </div>
 
 <script>
-// scroll animation like Athlead
+// reveal animation
 const sections=document.querySelectorAll('.section');
 
 const observer=new IntersectionObserver(entries=>{
@@ -289,6 +291,52 @@ entry.target.classList.add('show');
 },{threshold:0.15});
 
 sections.forEach(s=>observer.observe(s));
+
+// click scroll
+function openSection(id){
+document.getElementById(id).scrollIntoView({behavior:"smooth"});
+}
+
+// ===== PARTICLES =====
+const canvas=document.getElementById("particles");
+const ctx=canvas.getContext("2d");
+
+canvas.width=window.innerWidth;
+canvas.height=window.innerHeight;
+
+let particles=[];
+
+for(let i=0;i<80;i++){
+particles.push({
+x:Math.random()*canvas.width,
+y:Math.random()*canvas.height,
+r:Math.random()*2,
+dx:(Math.random()-0.5),
+dy:(Math.random()-0.5)
+});
+}
+
+function animate(){
+ctx.clearRect(0,0,canvas.width,canvas.height);
+
+ctx.fillStyle="#ff174f";
+
+particles.forEach(p=>{
+ctx.beginPath();
+ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+ctx.fill();
+
+p.x+=p.dx;
+p.y+=p.dy;
+
+if(p.x<0||p.x>canvas.width)p.dx*=-1;
+if(p.y<0||p.y>canvas.height)p.dy*=-1;
+});
+
+requestAnimationFrame(animate);
+}
+
+animate();
 </script>
 
 </body>
