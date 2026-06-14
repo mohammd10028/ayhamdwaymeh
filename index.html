@@ -21,7 +21,7 @@ color:white;
 overflow-x:hidden;
 }
 
-/* ===== BACKGROUND ===== */
+/* ===== NEW BACKGROUND (Athlead style) ===== */
 .bg{
 position:fixed;
 inset:0;
@@ -29,41 +29,42 @@ z-index:-2;
 background: radial-gradient(circle at top,#1a1a2e,#07070a);
 }
 
+/* floating blobs */
 .blob{
 position:absolute;
-width:600px;
-height:600px;
+width:500px;
+height:500px;
 border-radius:50%;
-filter:blur(150px);
+filter:blur(160px);
 opacity:.25;
 animation:float 10s infinite ease-in-out;
 }
 
 .blob:nth-child(1){
 background:#ff174f;
-top:-150px;
-left:-150px;
+top:-100px;
+left:-100px;
 }
 
 .blob:nth-child(2){
 background:#6c63ff;
-bottom:-150px;
-right:-150px;
+bottom:-120px;
+right:-120px;
 }
 
 @keyframes float{
 0%,100%{transform:translateY(0);}
-50%{transform:translateY(70px);}
+50%{transform:translateY(60px);}
 }
 
-/* ===== CONTAINER ===== */
+/* container */
 .container{
-width:min(1200px,92%);
+width:min(1200px,90%);
 margin:auto;
 position:relative;
 }
 
-/* ===== HEADER ===== */
+/* header */
 header{
 display:flex;
 justify-content:space-between;
@@ -73,17 +74,24 @@ position:sticky;
 top:0;
 backdrop-filter:blur(12px);
 background:rgba(0,0,0,0.3);
+z-index:10;
 border-bottom:1px solid rgba(255,255,255,0.05);
 }
 
-/* ===== HERO ===== */
+.logo{
+font-size:26px;
+font-weight:900;
+color:#ff174f;
+}
+
+/* HERO */
 .hero{
-padding:120px 0 70px;
+padding:120px 0 80px;
 text-align:center;
 }
 
 .hero h1{
-font-size:clamp(45px,7vw,95px);
+font-size:clamp(42px,7vw,90px);
 font-weight:900;
 }
 
@@ -94,17 +102,16 @@ color:#ff174f;
 .hero p{
 margin-top:15px;
 color:#aaa;
-max-width:650px;
+max-width:600px;
 margin-inline:auto;
-font-size:18px;
 }
 
 .btn{
 display:inline-block;
 margin-top:25px;
-padding:15px 34px;
+padding:14px 30px;
 background:#ff174f;
-border-radius:14px;
+border-radius:12px;
 color:white;
 text-decoration:none;
 font-weight:800;
@@ -115,72 +122,67 @@ transition:.3s;
 transform:scale(1.05);
 }
 
-/* ===== SECTIONS ===== */
+/* ===== SECTIONS (Athlead cards style) ===== */
 .section{
 padding:80px 0;
 }
 
 .section-title{
-font-size:30px;
+font-size:32px;
 font-weight:900;
-margin-bottom:25px;
+margin-bottom:30px;
+text-align:left;
 }
 
-/* ===== BIG CARDS (ATHLEAD STYLE) ===== */
+/* GRID CARDS (NEW STYLE) */
 .grid{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
-gap:22px;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+gap:18px;
 }
 
-/* 🔥 BIG CARD */
 .card{
-background:rgba(255,255,255,0.04);
+background:rgba(255,255,255,0.03);
 border:1px solid rgba(255,255,255,0.08);
-padding:45px;              /* ⬅️ كبير */
-border-radius:20px;
+padding:25px;
+border-radius:16px;
 transition:.4s;
-backdrop-filter:blur(12px);
-min-height:240px;          /* ⬅️ شكل Athlead */
-display:flex;
-flex-direction:column;
-justify-content:center;
+backdrop-filter:blur(10px);
 cursor:pointer;
+position:relative;
+overflow:hidden;
 }
 
 .card:hover{
-transform:translateY(-14px) scale(1.03);
+transform:translateY(-10px);
 border-color:#ff174f;
-box-shadow:0 20px 50px rgba(255,23,79,.25);
+box-shadow:0 10px 35px rgba(255,23,79,.2);
 }
 
 .card h3{
 color:#ff174f;
-font-size:22px;
-margin-bottom:10px;
+margin-bottom:8px;
 }
 
 .card p{
 color:#aaa;
 line-height:1.6;
-font-size:16px;
-margin-bottom:15px;
 }
 
 /* DOWNLOAD BUTTON */
 .download{
 display:inline-block;
-padding:12px 16px;
+margin-top:15px;
+padding:10px 16px;
 background:#ff174f;
 color:white;
-border-radius:12px;
+border-radius:10px;
 text-decoration:none;
-font-weight:800;
+font-weight:700;
 font-size:14px;
-width:fit-content;
 }
 
-/* ===== FOOTER ===== */
+/* FOOTER */
 footer{
 text-align:center;
 padding:40px;
@@ -213,7 +215,7 @@ transform:translateY(0);
 <div class="container">
 
 <header>
-<div class="logo"><b>AYHAM ELITE</b></div>
+<div class="logo">AYHAM ELITE</div>
 </header>
 
 <section class="hero">
@@ -229,20 +231,20 @@ transform:translateY(0);
 
 <div class="card">
 <h3>Beginner</h3>
-<p>Start your fitness journey with strong fundamentals and step-by-step guidance.</p>
-<a class="download" href="files/beginner.pdf" download>Download Plan</a>
+<p>Start your fitness journey with strong fundamentals.</p>
+<a class="download" href="files/beginner.pdf" download>Download</a>
 </div>
 
 <div class="card">
 <h3>Hypertrophy</h3>
-<p>Advanced muscle growth system designed for maximum size and strength.</p>
-<a class="download" href="files/bulking.pdf" download>Download Plan</a>
+<p>Muscle growth optimized training system.</p>
+<a class="download" href="files/bulking.pdf" download>Download</a>
 </div>
 
 <div class="card">
 <h3>Fat Loss</h3>
-<p>Cut fat efficiently while preserving muscle mass and performance.</p>
-<a class="download" href="files/fatloss.pdf" download>Download Plan</a>
+<p>Burn fat while preserving muscle mass.</p>
+<a class="download" href="files/fatloss.pdf" download>Download</a>
 </div>
 
 </div>
@@ -255,14 +257,14 @@ transform:translateY(0);
 
 <div class="card">
 <h3>Cutting</h3>
-<p>Lean body definition nutrition system for shredding fat.</p>
-<a class="download" href="files/cutting.pdf" download>Download Plan</a>
+<p>Lean body definition nutrition plan.</p>
+<a class="download" href="files/cutting.pdf" download>Download</a>
 </div>
 
 <div class="card">
 <h3>Bulking</h3>
-<p>Clean mass gain diet structured for serious growth.</p>
-<a class="download" href="files/bulking.pdf" download>Download Plan</a>
+<p>Clean mass gain structured diet.</p>
+<a class="download" href="files/bulking.pdf" download>Download</a>
 </div>
 
 </div>
@@ -275,7 +277,7 @@ transform:translateY(0);
 </div>
 
 <script>
-// reveal animation
+// scroll animation like Athlead
 const sections=document.querySelectorAll('.section');
 
 const observer=new IntersectionObserver(entries=>{
