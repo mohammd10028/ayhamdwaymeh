@@ -870,7 +870,7 @@ font-size: 14px;
 </section>
 
 <!-- ======================================================= -->
-<!-- بداية قسم البرامج التدريبية المطور - تصميم عريض متناسق -->
+<!-- قسم البرامج التدريبية - نسخة شفافة وموسطة بالكامل -->
 <!-- ======================================================= -->
 <style>
     .fitlead-programs-container {
@@ -880,59 +880,51 @@ font-size: 14px;
         padding: 20px;
         box-sizing: border-box;
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-        background-color: #050505; /* خلفية سوداء داكنة متناسقة */
+        background: transparent; /* إزالة الخلفية السوداء تماماً ليظهر موقعك الأصلي */
     }
 
-    /* تنسيق قسم الترويسة العلوي ليكون متناسقاً وعريضاً */
+    /* تنسيق الترويسة العلوية موسطة ونظيفة تماماً مثل الصورة */
     .fitlead-main-header {
         display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 30px;
+        flex-direction: column;
+        align-items: center;    /* توسيط كل العناصر */
+        text-align: center;
         width: 100%;
-        margin-bottom: 40px;
-        border-bottom: 1px solid #111112;
-        padding-bottom: 30px;
-    }
-
-    .fitlead-header-left {
-        display: flex;
-        align-items: center;
-        gap: 25px;
-        flex: 1;
+        margin-bottom: 50px;
+        background: transparent;
     }
 
     .fitlead-badge-top {
         border: 1px solid #c92a2a;
         color: #ff6b6b;
-        font-size: 0.7rem;
-        padding: 6px 14px;
+        font-size: 0.75rem;
+        padding: 6px 16px;
         border-radius: 20px;
         letter-spacing: 2px;
         font-weight: bold;
-        white-space: nowrap;
+        display: inline-block;
+        margin-bottom: 25px;
+        background: rgba(199, 42, 42, 0.05);
     }
 
     .fitlead-main-title {
-        font-size: 3rem;
+        font-size: 3.8rem; /* خط عريض وكبير للعنوان */
         font-weight: 800;
-        margin: 0;
+        margin: 0 0 20px 0;
         color: #ffffff;
         letter-spacing: -1px;
-        line-height: 1.1;
+        line-height: 1.2;
     }
 
     .fitlead-main-subtitle {
         color: #888888;
-        font-size: 1.05rem;
+        font-size: 1.2rem;
         line-height: 1.6;
-        max-width: 500px;
-        margin: 0;
-        flex: 1;
-        text-align: right;
+        max-width: 750px; /* فرد النص عرضياً بشكل مريح تماماً كالصورة */
+        margin: 0 auto;
     }
 
-    /* الصندوق الكبير الرئيسي (Card) */
+    /* الصندوق الكبير الاحترافي (How it works) */
     .fitlead-how-it-works-card {
         background-color: #0b0b0c;
         border: 1px solid #1c1c1e;
@@ -941,6 +933,7 @@ font-size: 14px;
         box-shadow: 0 20px 40px rgba(0,0,0,0.6);
         text-align: left;
         direction: ltr;
+        margin-top: 20px;
     }
 
     .fitlead-badge-red {
@@ -1012,18 +1005,12 @@ font-size: 14px;
         margin: 0;
     }
 
-    /* التجاوب مع الشاشات الصغيرة والجوال ليتحول إلى طولي بشكل مرتب */
     @media (max-width: 768px) {
-        .fitlead-main-header {
-            flex-direction: column;
-            align-items: flex-start;
-            gap: 15px;
+        .fitlead-main-title {
+            font-size: 2.6rem;
         }
         .fitlead-main-subtitle {
-            text-align: left;
-        }
-        .fitlead-main-title {
-            font-size: 2.2rem;
+            font-size: 1.05rem;
         }
         .fitlead-how-it-works-card {
             padding: 25px;
@@ -1032,18 +1019,16 @@ font-size: 14px;
 </style>
 
 <div class="fitlead-programs-container">
-    <!-- الجزء العلوي العريض المتناسق -->
+    <!-- الترويسة الموسطة والشفافة بالكامل -->
     <header class="fitlead-main-header">
-        <div class="fitlead-header-left">
-            <span class="fitlead-badge-top">PROGRAMMING</span>
-            <h1 class="fitlead-main-title">Training<br>Programs</h1>
-        </div>
+        <span class="fitlead-badge-top">PROGRAMMING</span>
+        <h1 class="fitlead-main-title">Training Programs</h1>
         <p class="fitlead-main-subtitle">
             Four evidence-based splits. Each engineered around frequency, recovery, and stimulus distribution.
         </p>
     </header>
 
-    <!-- المربع الكبير الاحترافي -->
+    <!-- المربع الكبير الاحترافي الذي يظهر بالأسفل -->
     <section class="fitlead-how-it-works-card">
         <span class="fitlead-badge-red">HOW IT WORKS</span>
         
@@ -1084,7 +1069,7 @@ font-size: 14px;
     </section>
 </div>
 <!-- ======================================================= -->
-<!-- نهاية قسم البرامج التدريبية المطور -->
+<!-- نهاية قسم البرامج التدريبية المطور الشفاف -->
 <!-- ======================================================= -->
     
 <!-- TRAINING PROGRAMS SECTION -->
