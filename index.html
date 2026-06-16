@@ -1267,53 +1267,137 @@ font-size: 14px;
     </div>
 </div>
     
-<!-- ======================================================= -->
-<!-- قسم حاسبة السعرات الاحترافية المتطورة -->
-<!-- ======================================================= -->
 <style>
-    .fitlead-calc-container {
+    /* الحاوية الرئيسية المعزولة لضمان الثبات التام */
+    .fitlead-calories-wrapper {
         width: 100%;
-        max-width: 600px;
-        margin: 20px auto 80px auto;
-        padding: 35px;
-        background: rgba(14, 14, 16, 0.75) !important; /* خلفية داكنة شفافة متناسقة مع الموقع */
-        border: 1px solid #1c1c1e;
-        border-radius: 24px;
+        max-width: 1200px;
+        margin: 140px auto 60px auto;
+        padding: 0 20px;
         box-sizing: border-box;
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-        direction: ltr; /* واجهة احترافية بالإنجليزية */
-        text-align: left;
+        background: transparent !important;
+        position: relative;
+        display: block;
+        clear: both;
     }
 
-    .fitlead-calc-group {
+    /* الترويسة الموسطة والشفافة تماماً */
+    .fitlead-calories-header {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        width: 100%;
+        margin-bottom: 50px;
+        background: transparent !important;
+    }
+
+    .fitlead-badge-calories {
+        border: 1px solid #c92a2a;
+        color: #ff6b6b;
+        font-size: 0.75rem;
+        padding: 6px 16px;
+        border-radius: 20px;
+        letter-spacing: 2px;
+        font-weight: bold;
+        display: inline-block;
+        margin-bottom: 25px;
+        background: rgba(199, 42, 42, 0.05);
+        text-transform: uppercase;
+    }
+
+    .fitlead-title-calories {
+        font-size: 3.8rem;
+        font-weight: 800;
+        margin: 0 0 20px 0;
+        color: #ffffff;
+        letter-spacing: -1px;
+        line-height: 1.2;
+    }
+
+    .fitlead-subtitle-calories {
+        color: #888888;
+        font-size: 1.2rem;
+        line-height: 1.6;
+        max-width: 750px;
+        margin: 0 auto;
+    }
+
+    /* الصندوق الكبير الشفاف المحمي */
+    .fitlead-works-box {
+        background: transparent !important;
+        border: 1px solid #1c1c1e;
+        border-radius: 24px;
+        padding: 45px;
+        margin-top: 20px;
+        box-shadow: none !important;
+    }
+
+    .fitlead-badge-red {
+        color: #ff6b6b;
+        font-size: 0.75rem;
+        font-weight: bold;
+        letter-spacing: 1.5px;
+        border: 1px solid rgba(239, 68, 68, 0.2);
+        background-color: rgba(239, 68, 68, 0.05);
+        padding: 6px 14px;
+        border-radius: 20px;
+        display: inline-block;
         margin-bottom: 25px;
     }
 
-    .fitlead-calc-label {
-        display: block;
-        color: #888888;
-        font-size: 0.9rem;
-        font-weight: 600;
-        margin-bottom: 10px;
-        letter-spacing: 0.5px;
+    .fitlead-section-heading {
+        font-size: 1.8rem;
+        font-weight: 700;
+        line-height: 1.4;
+        margin: 0 0 15px 0;
+        color: #ffffff;
     }
 
-    /* أزرار اختيار الجنس (Male / Female) المودرن */
-    .fitlead-gender-selector {
+    /* شبكة المدخلات المتوافقة مع الإتجاهين */
+    .fitlead-steps-grid {
         display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 15px;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 20px;
+        margin-top: 30px;
+    }
+
+    .fitlead-step-item {
+        background-color: rgba(14, 14, 16, 0.75);
+        border: 1px solid #1c1c1e;
+        border-radius: 16px;
+        padding: 25px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        box-sizing: border-box;
+    }
+
+    .fitlead-step-label {
+        color: #888888;
+        font-size: 0.8rem;
+        font-weight: bold;
+        margin-bottom: 15px;
+        letter-spacing: 1px;
+    }
+
+    .fitlead-gender-group {
+        display: flex;
+        gap: 10px;
+        width: 100%;
     }
 
     .fitlead-gender-btn {
-        background: transparent;
+        flex: 1;
+        background: #050505;
         border: 1px solid #1c1c1e;
         color: #ffffff;
-        padding: 14px;
-        border-radius: 12px;
+        padding: 10px;
+        border-radius: 8px;
         cursor: pointer;
         font-weight: 600;
-        font-size: 1rem;
+        font-size: 0.9rem;
         transition: all 0.3s ease;
     }
 
@@ -1323,26 +1407,25 @@ font-size: 14px;
         color: #ff6b6b;
     }
 
-    /* حقول الإدخال */
-    .fitlead-calc-input, .fitlead-calc-select {
+    .fitlead-input-field {
         width: 100%;
-        padding: 14px 18px;
+        padding: 12px;
         background: #050505;
         border: 1px solid #1c1c1e;
-        border-radius: 12px;
+        border-radius: 8px;
         color: #ffffff;
-        font-size: 1rem;
-        box-sizing: border-box;
+        font-size: 0.95rem;
         outline: none;
+        box-sizing: border-box;
         transition: border-color 0.3s ease;
     }
 
-    .fitlead-calc-input:focus, .fitlead-calc-select:focus {
+    .fitlead-input-field:focus {
         border-color: #e03131;
     }
 
-    /* زر الحساب الأحمر */
-    .fitlead-calc-btn {
+    /* زر الحساب الممتد */
+    .fitlead-calc-action-btn {
         width: 100%;
         background: #e03131;
         color: #ffffff;
@@ -1352,142 +1435,104 @@ font-size: 14px;
         font-size: 1.1rem;
         font-weight: 700;
         cursor: pointer;
+        margin-top: 30px;
         transition: background 0.3s ease;
-        margin-top: 10px;
     }
 
-    .fitlead-calc-btn:hover {
+    .fitlead-calc-action-btn:hover {
         background: #c92a2a;
     }
 
-    /* صندوق النتيجة الاحترافي */
-    .fitlead-calc-result {
+    /* صندوق النتيجة المدمج الشفاف */
+    .fitlead-calc-result-box {
         margin-top: 30px;
         padding: 25px;
-        background: rgba(224, 49, 49, 0.05);
-        border: 1px dashed rgba(224, 49, 49, 0.3);
+        background: rgba(224, 49, 49, 0.03);
+        border: 1px dashed rgba(224, 49, 49, 0.2);
         border-radius: 16px;
         text-align: center;
-        display: none; /* يظهر فقط عند الحساب */
+        display: none;
     }
 
-    .fitlead-result-number {
-        font-size: 2.8rem;
+    .fitlead-result-value {
+        font-size: 3.2rem;
         font-weight: 800;
         color: #ff6b6b;
         margin: 5px 0;
     }
 
-    .fitlead-result-text {
-        color: #888888;
-        font-size: 0.95rem;
+    .fitlead-result-desc {
+        color: #777777;
+        font-size: 0.9rem;
+    }
+
+    /* دعم التنسيقات عند تحول الصفحة للغة العربية للتحكم بالاتجاهات ومحاذاة النصوص */
+    .fitlead-rtl {
+        direction: rtl !important;
+        text-align: right !important;
+    }
+    .fitlead-rtl .fitlead-works-box {
+        text-align: right !important;
+        direction: rtl !important;
+    }
+    .fitlead-rtl .fitlead-step-item {
+        align-items: flex-start !important;
+    }
+
+    @media (max-width: 768px) {
+        .fitlead-calories-wrapper { margin-top: 160px; }
+        .fitlead-title-calories { font-size: 2.6rem; }
+        .fitlead-subtitle-calories { font-size: 1.05rem; }
+        .fitlead-works-box { padding: 25px; }
     }
 </style>
 
-<div class="fitlead-calc-container">
-    <!-- اختيار الجنس -->
-    <div class="fitlead-calc-group">
-        <label class="fitlead-calc-label">SELECT GENDER</label>
-        <div class="fitlead-gender-selector">
-            <button type="button" class="fitlead-gender-btn active" id="btn-male" onclick="setGender('male')">MALE</button>
-            <button type="button" class="fitlead-gender-btn" id="btn-female" onclick="setGender('female')">FEMALE</button>
+<div class="fitlead-calories-wrapper" id="fitlead-cal-wrapper">
+    <div class="fitlead-calories-header">
+        <span class="fitlead-badge-calories" id="lang-badge-top">NUTRITION</span>
+        <h1 class="fitlead-title-calories" id="lang-main-title">Maintenance Calories</h1>
+        <p class="fitlead-subtitle-calories" id="lang-main-subtitle">
+            Calculate your baseline energy requirements. The precise starting point engineered around your physical activity and body composition.
+        </p>
+    </div>
+
+    <section class="fitlead-works-box">
+        <span class="fitlead-badge-red" id="lang-badge-box">CALCULATOR</span>
+        <h2 class="fitlead-section-heading" id="lang-box-heading">
+            Enter your parameters to evaluate your daily metabolic threshold.
+        </h2>
+
+        <div class="fitlead-steps-grid">
+            <div class="fitlead-step-item">
+                <span class="fitlead-step-label" id="lang-step1">01 / GENDER</span>
+                <div class="fitlead-gender-group">
+                    <button type="button" class="fitlead-gender-btn active" id="calc-male" onclick="updateGender('male')">MALE</button>
+                    <button type="button" class="fitlead-gender-btn" id="calc-female" onclick="updateGender('female')">FEMALE</button>
+                </div>
+            </div>
+
+            <div class="fitlead-step-item">
+                <span class="fitlead-step-label" id="lang-step2">02 / METRICS</span>
+                <div style="display: flex; gap: 10px; width: 100%;">
+                    <input type="number" id="v-weight" class="fitlead-input-field">
+                    <input type="number" id="v-height" class="fitlead-input-field">
+                </div>
+            </div>
+
+            <div class="fitlead-step-item">
+                <span class="fitlead-step-label" id="lang-step3">03 / AGE</span>
+                <input type="number" id="v-age" class="fitlead-input-field">
+            </div>
+
+            <div class="fitlead-step-item">
+                <span class="fitlead-step-label" id="lang-step4">04 / ACTIVITY</span>
+                <select id="v-activity" class="fitlead-input-field" style="cursor: pointer;">
+                    </select>
+            </div>
         </div>
-    </div>
 
-    <!-- الطول والوزن والعمر في سطرين متناسقين -->
-    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
-        <div class="fitlead-calc-group">
-            <label class="fitlead-calc-label">WEIGHT (KG)</label>
-            <input type="number" id="calc-weight" class="fitlead-calc-input" placeholder="e.g. 75">
-        </div>
-        <div class="fitlead-calc-group">
-            <label class="fitlead-calc-label">HEIGHT (CM)</label>
-            <input type="number" id="calc-height" class="fitlead-calc-input" placeholder="e.g. 178">
-        </div>
-    </div>
-
-    <div class="fitlead-calc-group">
-        <label class="fitlead-calc-label">AGE</label>
-        <input type="number" id="calc-age" class="fitlead-calc-input" placeholder="e.g. 24">
-    </div>
-
-    <!-- مستوى النشاط البدني -->
-    <div class="fitlead-calc-group">
-        <label class="fitlead-calc-label">ACTIVITY LEVEL</label>
-        <select id="calc-activity" class="fitlead-calc-select">
-            <option value="1.2">Sedentary (Office job, no exercise)</option>
-            <option value="1.375">Lightly Active (Light exercise 1-3 days/week)</option>
-            <option value="1.55" selected>Moderately Active (Heavy exercise 3-5 days/week)</option>
-            <option value="1.725">Very Active (Heavy intense exercise 6-7 days/week)</option>
-            <option value="1.9">Athlete / Extra Active (Twice a day training)</option>
-        </select>
-    </div>
-
-    <button type="button" class="fitlead-calc-btn" onclick="calculateMaintenance()">CALCULATE CALORIES</button>
-
-    <!-- مكان ظهور النتيجة الفخمة -->
-    <div class="fitlead-calc-result" id="calc-result-box">
-        <span class="fitlead-calc-label" style="margin-bottom: 0;">YOUR MAINTENANCE CALORIES</span>
-        <div class="fitlead-result-number" id="calories-output">0</div>
-        <p class="fitlead-result-text">Kcal / Day required to maintain your current weight.</p>
-    </div>
-</div>
-
-<script>
-    // متغير لتخزين الجنس المختار (الافتراضي ذكر)
-    let selectedGender = 'male';
-
-    function setGender(gender) {
-        selectedGender = gender;
-        document.getElementById('btn-male').classList.remove('active');
-        document.getElementById('btn-female').classList.remove('active');
-        
-        if(gender === 'male') {
-            document.getElementById('btn-male').classList.add('active');
-        } else {
-            document.getElementById('btn-female').classList.add('active');
-        }
-    }
-
-    function calculateMaintenance() {
-        const weight = parseFloat(document.getElementById('calc-weight').value);
-        const height = parseFloat(document.getElementById('calc-height').value);
-        const age = parseFloat(document.getElementById('calc-age').value);
-        const activity = parseFloat(document.getElementById('calc-activity').value);
-
-        // التحقق من إدخال البيانات كاملة
-        if (!weight || !height || !age) {
-            alert("Please fill in all fields correctly.");
-            return;
-        }
-
-        let bmr = 0;
-        
-        // تطبيق معادلة Mifflin-St Jeor بدقة بناءً على الجنس
-        if (selectedGender === 'male') {
-            bmr = (10 * weight) + (6.25 * height) - (5 * age) + 5;
-        } else {
-            bmr = (10 * weight) + (6.25 * height) - (5 * age) - 161;
-        }
-
-        // حساب سعرات الثبات النهائية بناءً على مجهوده البدني
-        const totalCalories = Math.round(bmr * activity);
-
-        // إظهار النتيجة وتحديث الرقم بالحركة والانسيابية
-        const resultBox = document.getElementById('calc-result-box');
-        const output = document.getElementById('calories-output');
-        
-        resultBox.style.display = 'block';
-        output.innerText = totalCalories.toLocaleString();
-        
-        // التمرير السلس للنتيجة لكي يراها المستخدم بوضوح
-        resultBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-    }
-</script>
-<!-- ======================================================= -->
-<!-- نهاية قسم حاسبة السعرات المتطورة -->
-<!-- ======================================================= -->
-    
+        <button type="button" class="fitlead-calc-action-btn" id="lang-calc-btn" onclick="executeCalculation()">CALCUL
+            
 <!-- ===== قسم مستكشف الوظائف الحركية التفاعلي الجديد ===== -->
 <section class="section" id="explorer">
 <h2 class="title" id="explorerTitle">Movement Explorer</h2>
