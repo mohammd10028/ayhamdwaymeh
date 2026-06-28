@@ -1157,17 +1157,17 @@ font-size: 14px;
         <h2 style="margin: 0; font-size: 20px;">WORKOUT HISTORY</h2>
     </div>
 
-    <div id="workout-form" style="background: #000; padding: 15px; border-radius: 8px; border: 1px solid #333;">
-        <input type="text" id="exName" placeholder="Exercise Name" style="width:100%; padding:10px; margin-bottom:10px; background:#1a1a1a; border:1px solid #444; color:#fff; border-radius:4px;">
+    <div style="background: #000; padding: 15px; border-radius: 8px; border: 1px solid #333; margin-bottom: 20px;">
+        <input type="text" id="exName" placeholder="Exercise Name" style="width:100%; padding:10px; margin-bottom:10px; background:#1a1a1a; border:1px solid #444; color:#fff; border-radius:4px; box-sizing:border-box;">
         
-        <div id="sets-wrapper" style="display: flex; flex-direction: column; gap: 5px; margin-bottom: 10px;">
-            <div style="display:flex; gap:5px;"><input type="number" class="w" placeholder="W" style="width:50%; padding:8px; background:#1a1a1a; border:1px solid #444; color:#fff;"><input type="number" class="r" placeholder="R" style="width:50%; padding:8px; background:#1a1a1a; border:1px solid #444; color:#fff;"></div>
-            <div style="display:flex; gap:5px;"><input type="number" class="w" placeholder="W" style="width:50%; padding:8px; background:#1a1a1a; border:1px solid #444; color:#fff;"><input type="number" class="r" placeholder="R" style="width:50%; padding:8px; background:#1a1a1a; border:1px solid #444; color:#fff;"></div>
-            <div style="display:flex; gap:5px;"><input type="number" class="w" placeholder="W" style="width:50%; padding:8px; background:#1a1a1a; border:1px solid #444; color:#fff;"><input type="number" class="r" placeholder="R" style="width:50%; padding:8px; background:#1a1a1a; border:1px solid #444; color:#fff;"></div>
-            <div style="display:flex; gap:5px;"><input type="number" class="w" placeholder="W" style="width:50%; padding:8px; background:#1a1a1a; border:1px solid #444; color:#fff;"><input type="number" class="r" placeholder="R" style="width:50%; padding:8px; background:#1a1a1a; border:1px solid #444; color:#fff;"></div>
+        <div id="sets-wrapper" style="display: flex; flex-direction: column; gap: 8px; margin-bottom: 10px;">
+            <div style="display:flex; gap:5px;"><input type="number" class="w" placeholder="Weight" style="width:50%; padding:8px; background:#1a1a1a; border:1px solid #444; color:#fff;"><input type="number" class="r" placeholder="Reps" style="width:50%; padding:8px; background:#1a1a1a; border:1px solid #444; color:#fff;"></div>
+            <div style="display:flex; gap:5px;"><input type="number" class="w" placeholder="Weight" style="width:50%; padding:8px; background:#1a1a1a; border:1px solid #444; color:#fff;"><input type="number" class="r" placeholder="Reps" style="width:50%; padding:8px; background:#1a1a1a; border:1px solid #444; color:#fff;"></div>
+            <div style="display:flex; gap:5px;"><input type="number" class="w" placeholder="Weight" style="width:50%; padding:8px; background:#1a1a1a; border:1px solid #444; color:#fff;"><input type="number" class="r" placeholder="Reps" style="width:50%; padding:8px; background:#1a1a1a; border:1px solid #444; color:#fff;"></div>
+            <div style="display:flex; gap:5px;"><input type="number" class="w" placeholder="Weight" style="width:50%; padding:8px; background:#1a1a1a; border:1px solid #444; color:#fff;"><input type="number" class="r" placeholder="Reps" style="width:50%; padding:8px; background:#1a1a1a; border:1px solid #444; color:#fff;"></div>
         </div>
 
-        <textarea id="exNote" placeholder="Notes..." style="width:100%; padding:10px; margin-bottom:10px; background:#1a1a1a; border:1px solid #444; color:#fff; border-radius:4px;"></textarea>
+        <textarea id="exNote" placeholder="Notes..." style="width:100%; padding:10px; margin-bottom:10px; background:#1a1a1a; border:1px solid #444; color:#fff; border-radius:4px; box-sizing:border-box;"></textarea>
         <select id="exWeek" style="width:100%; padding:10px; background:#1a1a1a; color:#fff; margin-bottom:10px; border:1px solid #444;">
             <option value="WEEK 1">WEEK 1</option><option value="WEEK 2">WEEK 2</option>
             <option value="WEEK 3">WEEK 3</option><option value="WEEK 4">WEEK 4</option>
@@ -1175,24 +1175,28 @@ font-size: 14px;
         <button id="add-btn" style="width:100%; padding:12px; background:#ff2d55; border:none; color:white; font-weight:bold; cursor:pointer;">ADD EXERCISE</button>
     </div>
 
-    <div id="display-area" style="margin-top: 20px;"></div>
+    <div id="display-area"></div>
 </section>
 
 <script>
 document.getElementById('add-btn').onclick = function() {
     const name = document.getElementById('exName').value;
-    if(!name) return alert("Enter name!");
+    if(!name) return alert("Please enter exercise name");
     
     const weights = document.querySelectorAll('.w');
     const reps = document.querySelectorAll('.r');
     let setsData = [];
+    
     for(let i=0; i<4; i++) {
-        if(weights[i].value) setsData.push(`${weights[i].value}kg x ${reps[i].value || 0}`);
+        if(weights[i].value !== "") {
+            setsData.push(`Set ${i+1}: ${weights[i].value}kg x ${reps[i].value || 0}`);
+        }
     }
 
     const log = {
+        id: Date.now(),
         name,
-        sets: setsData.join(' | '),
+        sets: setsData,
         note: document.getElementById('exNote').value,
         week: document.getElementById('exWeek').value
     };
@@ -1200,8 +1204,21 @@ document.getElementById('add-btn').onclick = function() {
     let logs = JSON.parse(localStorage.getItem('fitlead_logs') || "[]");
     logs.push(log);
     localStorage.setItem('fitlead_logs', JSON.stringify(logs));
+    
+    // تنظيف الحقول
+    document.getElementById('exName').value = "";
+    document.querySelectorAll('.w, .r').forEach(el => el.value = "");
+    document.getElementById('exNote').value = "";
+    
     loadLogs();
 };
+
+function deleteLog(id) {
+    let logs = JSON.parse(localStorage.getItem('fitlead_logs') || "[]");
+    logs = logs.filter(l => l.id !== id);
+    localStorage.setItem('fitlead_logs', JSON.stringify(logs));
+    loadLogs();
+}
 
 function loadLogs() {
     const logs = JSON.parse(localStorage.getItem('fitlead_logs') || "[]");
@@ -1214,14 +1231,21 @@ function loadLogs() {
         details.style.cssText = "margin-bottom:10px; border:1px solid #333; background:#1a1a1a; border-radius:8px; padding:10px; color:#ff2d55;";
         details.innerHTML = `<summary style="cursor:pointer; font-weight:bold;">${w}</summary>
             <div style="color:#fff; padding-top:10px; font-size:13px;">
-                ${weekLogs.map(l => `<div><b>${l.name}</b>: ${l.sets}<br><i style="color:#aaa;">${l.note}</i></div><hr style="border:0; border-top:1px solid #333; margin:5px 0;">`).join('')}
+                ${weekLogs.map(l => `
+                    <div style="margin-bottom:15px; padding-bottom:10px; border-bottom:1px solid #333;">
+                        <div style="display:flex; justify-content:space-between;">
+                            <b style="font-size:15px; color:#ff2d55;">${l.name}</b>
+                            <button onclick="deleteLog(${l.id})" style="background:none; border:none; color:#ff4444; font-weight:bold; cursor:pointer;">X</button>
+                        </div>
+                        <div style="margin-top:5px;">${l.sets.join('<br>')}</div>
+                        ${l.note ? `<div style="margin-top:5px; font-style:italic; color:#aaa;">Note: ${l.note}</div>` : ''}
+                    </div>`).join('')}
             </div>`;
         container.appendChild(details);
     });
 }
 loadLogs();
 </script>
-
 
 
     
