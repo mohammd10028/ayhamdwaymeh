@@ -1151,20 +1151,46 @@ font-size: 14px;
 </div>
 </section>
 
-    <section style="margin: 20px 0; padding: 20px; background: rgba(25, 25, 25, 0.7); border: 1px solid #333; border-radius: 16px;">
-    <div style="border-left: 4px solid #ff2d55; padding-left: 15px; margin-bottom: 20px;">
-        <h2 style="color: #fff; margin: 0; font-family: sans-serif;">Workout History</h2>
-    </div>
+
+    <!-- الصندوق الشفاف الرئيسي (الخلفية) -->
+<section style="margin: 20px 0; padding: 20px; background: rgba(25, 25, 25, 0.7); border: 1px solid #333; border-radius: 16px;">
     
-    <div id="weeks-container" style="color: #ccc;"></div>
+    <!-- العنوان بالستايل المطابق لموقعك -->
+    <div style="border-left: 4px solid #ff2d55; padding-left: 15px; margin-bottom: 20px;">
+        <h2 style="color: #fff; margin: 0; font-family: sans-serif; font-size: 24px;">Workout History</h2>
+    </div>
+
+    <!-- نموذج إدخال التمارين -->
+    <div style="margin-bottom: 20px;">
+        <input type="text" id="exName" placeholder="Exercise Name" style="padding: 10px; border-radius: 8px; border: none; width: 100%; margin-bottom: 10px; background: #1a1a1a; color: #fff;">
+        <input type="number" id="exWeight" placeholder="Weight (kg)" style="padding: 10px; border-radius: 8px; border: none; width: 100%; margin-bottom: 10px; background: #1a1a1a; color: #fff;">
+        <button onclick="addLog()" style="background: #ff2d55; color: white; padding: 10px 20px; border: none; border-radius: 8px; cursor: pointer; width: 100%; font-weight: bold;">Save Workout</button>
+    </div>
+
+    <!-- منطقة عرض سجل التمارين -->
+    <div id="weeks-container" style="color: #ccc; font-family: sans-serif;"></div>
 </section>
 
 <script>
+function addLog() {
+    const name = document.getElementById('exName').value;
+    const weight = document.getElementById('exWeight').value;
+    if(!name || !weight) return alert("الرجاء تعبئة الحقول");
+    
+    let logs = JSON.parse(localStorage.getItem('fitlead_logs')) || [];
+    logs.push({exercise: name, weight: weight, date: new Date().toISOString()});
+    localStorage.setItem('fitlead_logs', JSON.stringify(logs));
+    
+    document.getElementById('exName').value = "";
+    document.getElementById('exWeight').value = "";
+    renderWorkouts();
+}
+
 function renderWorkouts() {
     const logs = JSON.parse(localStorage.getItem('fitlead_logs')) || [];
     const container = document.getElementById('weeks-container');
     container.innerHTML = "";
-
+    
     const grouped = logs.reduce((acc, log) => {
         let week = "WEEK " + Math.ceil(new Date(log.date).getDate() / 7);
         if(!acc[week]) acc[week] = [];
@@ -1174,9 +1200,9 @@ function renderWorkouts() {
 
     Object.entries(grouped).forEach(([week, items]) => {
         container.innerHTML += `
-            <div style="margin-bottom: 15px;">
+            <div style="margin-bottom: 15px; border-top: 1px solid #333; padding-top: 10px;">
                 <div style="color: #ff2d55; font-weight: bold; margin-bottom: 5px;">${week}</div>
-                ${items.map(i => `<div style="padding: 5px 0; border-bottom: 1px solid #333;">${i.exercise} - ${i.weight}kg</div>`).join('')}
+                ${items.map(i => `<div style="padding: 3px 0;">${i.exercise} - ${i.weight}kg</div>`).join('')}
             </div>
         `;
     });
@@ -1185,6 +1211,7 @@ window.onload = renderWorkouts;
 </script>
 
 
+    
 <!-- NUTRITION SECTION -->
 <section class="section" id="nutrition">
 <h2 class="title" id="secTitle2">Nutrition Plans</h2>
